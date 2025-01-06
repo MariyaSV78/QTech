@@ -46,42 +46,7 @@ echo Activate the virtual environment
 call "%VENV_NAME%"\Scripts\activate && (call python.exe -m pip install --upgrade pip )
 
 
-where nvcc >nul 2>nul
-if %ERRORLEVEL% NEQ 0 (
-    echo CUDA is not installed. Proceeding with installation...
-    set /p INSTALL_CUDA="Install CUDA (y/[n])? "
-    
-    if /i "%INSTALL_CUDA%"=="y" (
-        echo Installing CUDA...
-        REM Download CUDA manually from NVIDIA website and run the installer
-        REM Example:
-    	curl -O https://developer.download.nvidia.com/compute/cuda/12.3.1/local_installers/cuda_12.3.1_546.12_windows.exe
-   	start "cuda_12.3.1_546.12_windows.exe"
-
-        python -m pip install -r requirements_qtech_CUDA.txt
-    ) else (
-        echo Skipping CUDA...
-    )
-) else (
-    echo CUDA is already installed.
-)
-
-
-python -m pip install -r requirements_qtech.txt
-
-REM Install IPython kernel
-REM python -m ipykernel install --user --name=%VENV_NAME%
-
-
-REM Get the path to cuDNN library (if applicable)
-for /f "usebackq tokens=*" %%A in (`python -c "import nvidia.cudnn, os; print(os.path.dirname(nvidia.cudnn.__file__))"`) do set "CUDNN_PATH=%%A"
-
-REM Extend the PATH variable to include the required libraries
-if defined CUDNN_PATH set "LD_LIBRARY_PATH=%LD_LIBRARY_PATH%;%VENV_PREFIX%\lib\;%CUDNN_PATH%\lib"
-
-REM Check for GPU devices using TensorFlow
-python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
-
+python -m pip install -r requirements.txt
 
 cd .\html
 
