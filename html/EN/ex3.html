@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="keywords" content="Quantum technology">
+	<title>Chapter 3 - Approximation of the Schrödinger equation solution with Multi-Layer Perceptrons</title>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160626805-1"></script> -->
+	<!-- <script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-160626805-1');
+	</script> -->
+		
+	<link href="../css/QMexercise.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/dropmenu.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/author.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/slideshow1.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/qtitle.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/tooltip.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/modal.css" rel="stylesheet" type="text/css" media="all">
+	<script src="../js/getFiles.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.blockUI.2.70.js" type="text/javascript"></script>
+	<script src="../js/plotly.min.js"></script>
+	<script src="../js/ServerUpdate.js" type="text/javascript"></script>
+	<script src="../js/ServerUpdate3.js" type="text/javascript"></script>
+	<script src="../js/common.js" type="text/javascript"></script>
+	<script src="../js/Figures3.js" type="text/javascript"></script>
+</head>
+
+<body onload="runOnce(0)" lang=EN>
+<script src="../js/chapitre3.js" type="text/javascript"></script>
+<script src="../js/save_json_data.js" type="text/javascript"></script>
+<script async src="../js/mathjax/MathJax.js?config=TeX-MML-AM_SVG-full"></script>
+
+
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		CommonHTML: {scale: 100},
+		SVG: { scale: 100},
+		matchFontHeight: true,
+		showMathMenu: false,
+		showMathMenuMSIE: false,
+	});
+	</script>
+	
+	<ul id="menu">
+		<li><a href="../index.html">Content</a></li>
+		<li>
+		<li><a href="../EN/tutorial1.html">Tutorial</a></li>
+
+		<li><a href="../EN/Contacts.html">Contacts</a></li>
+	</ul>
+<div class="divtitle">
+	<a href="..//index.html" title="Back to content" style="text-decoration:none;">
+	<div class="movingtitle">
+		<span>Q</span>
+		<span>U</span>
+		<span>A</span>
+		<span>N</span>
+		<span>T</span>
+		<span>U</span>
+		<span>M</span>
+		<br>
+		<span>T</span>
+		<span>E</span>
+		<span>C</span>
+		<span>H</span>
+		<span>N</span>
+		<span>O</span>
+		<span>L</span>
+		<span>O</span>
+		<span>G</span>
+		<span>Y</span>
+	</div>
+	</a>
+</div>
+<hr>
+
+<!-- yellow background -->
+<div class="All">
+	<div class="title2" style="height:32vmin;height:43vm;position:relative;overflow:hidden;" onmouseleave="updateSlides()">
+		<div class="slideshow-container">
+			<div class="zeroSlide">
+				<a href="../EN/ex1.html">
+					<b>EXERCISE 1:</b> <br> Photoionization cross section
+				</a>
+			</div>
+	
+			<div class="zeroSlide" >
+				<a href="../EN/ex2.html">
+					<b>EXERCISE 2:</b> <br> Spectroscopy of molecule
+				</a>
+			</div>
+
+			<div class="zeroSlide" style="display:block;">
+				<a href="#" style="pointer-events: none;">
+					<b>EXERCISE 3:</b> <br> Machine learning application 
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex4.html">
+					<b>EXERCISE 4:</b> <br> Superconductivity: <br> Josephson junctions
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex5.html">
+					<b>EXERCISE 5:</b> <br> Scanning tunneling microscopy
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex6.html">
+					<b>EXERCISE 6:</b> <br> Diffraction
+				</a>
+			</div>	
+
+			<div class="zeroSlide">
+				<a href="../EN/ex7.html">
+					<b>EXERCISE 7:</b> <br> Interferance
+				</a>
+			</div>
+
+		</div>
+
+		<br>
+		<a class="prev" onclick="slideIndex--;showSlides();" style="position:absolute;left:5px;top:45%;z-index:99">
+			<img alt="Back" style="border-style:none" src="../img/carousel_back.png" title="Previous exercise">
+		</a>
+		<a class="next" onclick="slideIndex++;showSlides();" style="position:absolute;right:5px;top:45%;z-index:99">
+			<img alt="Next" style="border-style:none" src="../img/carousel_next.png" title="Next exercise">
+		</a>
+		<div style="display: block;text-align: center;position:absolute;width:100%;bottom:5px;z-index:99">
+		<span class="dot" onclick="slideIndex = 0; showSlides();" title="EXERCISE 1"></span>
+		<span class="dot" onclick="slideIndex = 1; showSlides();" title="EXERCISE 2"></span>
+		<span class="dot active" onclick="slideIndex = 2; showSlides();" title="EXERCISE 3"></span>
+		<span class="dot" onclick="slideIndex = 3; showSlides();" title="EXERCISE 4"></span>
+		<span class="dot" onclick="slideIndex = 4; showSlides();" title="EXERCISE 5"></span>
+		<span class="dot" onclick="slideIndex = 5; showSlides();" title="EXERCISE 6"></span>
+		<span class="dot" onclick="slideIndex = 6; showSlides();" title="EXERCISE 7"></span>
+
+		</div>
+	</div>
+	<script>
+	var slideIndex =  2 ;
+	var prev_slideIndex =  slideIndex;
+	function showSlides() {
+		var slides = document.getElementsByClassName("zeroSlide");
+		var dots = document.getElementsByClassName("dot");
+		for (var i = 0; i < slides.length; i++) slides[i].style.display = "none";
+		for (var i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
+
+		slides[prev_slideIndex].offsetHeight; /* trigger reflow */
+		if(prev_slideIndex<slideIndex){
+			if (slideIndex > slides.length-1) slideIndex = 0;
+			slides[prev_slideIndex].style.left='-100%';
+			slides[slideIndex].style.left='0%';
+			slides[prev_slideIndex].style.animation=slides[slideIndex].style.animation='caroussel 1.5s';
+		}else{
+			if (slideIndex < 0) slideIndex = slides.length-1;
+			slides[prev_slideIndex].style.left='100%';
+			slides[slideIndex].style.left='0%';
+			slides[prev_slideIndex].style.animation=slides[slideIndex].style.animation='caroussel_back 1.5s';
+		}
+		slides[prev_slideIndex].style.display='block';
+		prev_slideIndex =  slideIndex;
+					
+		slides[slideIndex].style.display = "block";
+		dots[slideIndex].className += " active";
+	}
+	function updateSlides() {
+		if(slideIndex!= 2 ){
+			slideIndex= 2 ;
+			showSlides();
+		}
+	}
+	</script>
+	<hr>
+	<!-- introduction -->
+		<div class="formula-container">
+			<form id="Form5">
+				<p>	In this section, we use a<b> neural network model</b> (specifically, a multi-layer perceptron(MLP)) to find the solutions of the <a href="#" id="showInfo">Schrödinger equation</a> in 1-dimension.</p>
+				<!-- <script>	$("#showInfo").click(function(){$(this).data('clicked', true);	});	</script>	 -->
+
+				<div id="infoSection" style="display: none;">
+					<br> <hr>
+					<p>	The Schrödinger equation uses a wave function \(\psi:\mathbb{R}^d\to\mathbb{R}^m\) to characterize the quantum particle. The steady-state equation with constant energy \(E\) reads:
+
+						$$-\frac{\boldsymbol{\Sigma}_m(\boldsymbol{x})}{2}\boldsymbol{\Delta\psi}(\boldsymbol{x})+\mathbb{V}(\boldsymbol{x})\boldsymbol{\psi}(\boldsymbol{x})=\mathbb{E}\boldsymbol{\psi}(\boldsymbol{x})$$
+
+						where \(\boldsymbol{\Delta\psi}\) is the Laplacian operator, \(\mathbb{V}(\boldsymbol{x})\) potential field and  \(\boldsymbol{\Sigma}_m\in R^{d\times d}\) a positive definite matrix representing the inverse mass matrix of the particle. 
+						<ul>
+							<li>Kinetic energy of the particle: \(-\frac{\boldsymbol{\Sigma}_m(\boldsymbol{x})}{2}\boldsymbol{\Delta\psi}(\boldsymbol{x})\)</li> 
+							<li>Potential energy of the particle \(\mathbb{V}(\boldsymbol{x})\boldsymbol{\psi}(\boldsymbol{x})\)</li>
+						</ul>
+					</p>
+			
+					<p>
+						The left hand side of the steady-state Schrödinger equation is the application of an Hermitian operator \( \hat{\mathbb{H}}\) on \(\boldsymbol{\psi}(\boldsymbol{x})\), i.e. \(\hat{\mathbb{H}}\boldsymbol{\psi}=\mathbb{E}\boldsymbol{\psi}\).
+					</p>
+					<p>
+						Therefore, the Hermitian operator \(\hat{\mathbb{H}}\) provides a complete set of real \(\textbf{eigenstates}\) \(\boldsymbol{\tilde\psi}_i(\boldsymbol{x})\) according to the following equations:
+						$$\hat{\mathbb{H}}\boldsymbol{\tilde\psi}_i(\boldsymbol{x})=\mathbb{E}_i\boldsymbol{\tilde\psi}_i \int_{\mathbb{R}^d}\langle\boldsymbol{\tilde\psi}_i(\boldsymbol{x})\vert\boldsymbol{\tilde\psi}_j(\boldsymbol{x})\rangle d\boldsymbol{x}=\delta_{ij}$$
+
+						with \(\mathbb{M}=\mathbb{I}\).
+					</p>
+
+					<p>	Each eigenstate is associated to an \(\textbf{eigen-energy }\)\(E_i\).</p>
+					<p>
+						The standard equation (in physics) of a one-dimensional
+						harmonic oscillator is written as follows:
+
+						$$-\frac{1}{2m}\Delta \psi(x) +\frac{1}{2}mx^2\omega^2\psi(x)=E\psi(x)$$
+
+						with \(\hat{H}(\cdot)=-\frac{1}{2m}\Delta(\cdot) +\frac{1}{2}mx^2\omega^2(\cdot)\).
+					</p>			
+					
+					<button id="closeInfo">Close</button>
+					
+					
+					<hr>
+				</div>
+				
+				<div style="font-size: 14px"> 
+					<p>First, we generate a set of potentials (given by a polynomial \(V(x) = \sum_{i=0}^{k-1} \alpha_i x^i)\) and solve the Schrödinger equation associated 
+						with the potential using numerical methods to provide the wave functions and their energies.</p>
+					
+					<p>The potentials \(V(x)\) we discretise on a segment \((x_\text{min}, x_{max})\) of the length \(L = x_{max} - x_{min}\) into \(N\) points.</p>
+					
+					<p>We construct a dataset, which is composed of the potentials as features and wave functions as labels. 
+						
+						We will denote the \((n_\text{s} \times N)\) array containing \(n_\text{s}\) wave functions 
+						\(\psi^i\), \(i=0,\ldots,n_\text{s}\) by \(\boldsymbol{\psi}\), while the \((n_\text{s} \times N)\) 
+						array containing \(n_\text{s}\) potentials \(V^i\), \(i=0,\ldots,n_\text{s}\) by \(\boldsymbol{V}\).
+						
+						After the standard splitting of the dataset into a training and evaluation subsets, 
+						we train the neural network model such that the loss function is minimised, which we chose to be a mean square error 					
+						$$\text{MSE}(\psi,\tilde \psi) = \frac{1}{n_s} \sum_{i=0}^{n_s-1} \frac{1}{N} \sum_{j=0}^{N-1}|\psi_i^j-\tilde \psi_i^j|^2,$$
+					
+						between wave functions \(\psi\) associated to the potentials \(V\) and the predictions \(\tilde\psi\) 
+						that given the model: &nbsp;
+					
+						 \(\tilde \psi = \text{MLP}(V) .\)
+					</p>
+					
+					<p> After the training, we evaluate the thus obtained model on the validation data, which we have put away for this exact occasion.</p>		
+				</div>
+
+	<!-- here -->
+			</form>
+		</div>
+
+
+<!-- drop down section / Potential energy 1-->
+	<div class="hdiv" id="aDIV10full">	
+		<div class="hdivtitle" onclick="HideDiv4('aDIV10','aDIV10full','aDIV10blink')">		
+			<div id="aDIV10blink" class="OpenSymbol-hr4">[+]</div>		
+			<div class="Text-hr4">&nbsp;Training of the Multi-Layer Perceptron &nbsp;</div>	
+		</div>	
+
+		<!-- data entry, plotting (gray background) -->
+		<span id="aDIV10" hidden>
+			<section class="SimFrame" style="font-size: 13px"> 
+				<div class="lpaneleq">
+					<h4>Choose parameters for generation of the dataset: </h4>
+					<ul style="padding-inline-start: 20px;"> 
+						<li> 
+							<span style="white-space: nowrap;">\(x_{min}=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="2" id="var_x_min" placeholder="-8" value="-8" size="2" title="Minumum x for determining the potential V(x): [-10, 0]"></span>, 
+							<span style="white-space: nowrap;">\(x_{max}=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="2" id="var_x_max" placeholder="8" value="8" size="2" title="Maximum x for determining the potential V(x): [0, 10]"></span>
+							- defines the domain \(\mathcal{D}=[x_{min}, x_{max}]\) of the potential \(V(x), x\in D\);<br><br>
+						</li>
+						<li> 
+							<span style="white-space: nowrap;">\(m = \)<input type="text" class="numinput" autofocus required="required" maxlength="4" id="var_mass" placeholder="1" value="1" size="2" title="Mass in a.u." readonly></span>;
+							<p class="disabledMessage">Input disabled for this field</p><br><br>
+
+						</li>
+						<li> 
+							<span style="white-space: nowrap;">\(n_{state}=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="2" id="var_n_state" placeholder="1" value="1" size="2" title="Counts from the ground state n=0 upwards with growing energy"></span>
+							- the \(n^{th}\) excited state of the Schrödinger equation;<br><br> 
+						</li>
+						<li> 
+							<span style="white-space: nowrap;">\(N=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="3" id="var_n" placeholder="200" value="200" size="3" title="Higher value N corresponds to more precise numerical solution of the Schrödinger equation"></span>
+							- the amount of points into which we divide the domain \(\mathcal{D}\);<br><br>
+						</li>
+						<li> 
+							<span style="white-space: nowrap;">\(n_{s}=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="4" id="var_n_samples" placeholder="5000" value="5000" size="4" title="The sample is characterized by: potential, wave function and energy"></span>
+							- the number of samples in the dataset;<br><br>
+						</li>
+						<li>
+							<span style="white-space: nowrap;">\(N_{s}=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="2" id="var_n_samples_print" placeholder="5" value="5" size="2" title="Attention! It is recommended to take no more than 10 samples"></span>
+							- the number of samples for which the generated data will be displayed;<br><br>
+						</li>
+					</ul>
+				</div>	
+				<div class="rpaneleq">
+					<h4>Generation the values of \(\alpha\):</h4>
+					<form id="Form1">
+						<p style="padding-inline-start: 10px;">
+							\(\alpha^\text{min}\), \(\alpha^\text{max}\) - <!--the arrays \(\{\alpha^\text{min}_i \}_{i=0}^{k-1}\) and \(\{\alpha^\text{max}_i \}_{i=0}^{k-1}\)--> determine the lower and upper bounds
+							for the parameters \(\{ \alpha_{i, n_s} \}_{i=0}^{k-1}\) of the potential \(V_{n_s}(x) = \sum_{i=0}^{k-1} \alpha_{i, n_s} x^i \), where
+							$$ \alpha^\text{min}_{i} \leq \alpha_{i, n_s} \leq \alpha^\text{max}_{i}, \qquad i=0,\ldots,k-1, (k = 5).$$
+					
+						</p>
+					</form>
+				</div>		
+				<div class="rpaneleq">
+					<h4>For training of the Multi-Layer Perception</h4>
+					
+					have to define the hyper-parameters of the neural network model:			
+							
+						<ul style="padding-inline-start: 20px;">
+							<li><span style="white-space: nowrap;">\(learning\&nbsp;rate=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="6" id="var_lerning_rate" placeholder="0.0005" value="0.0005" size="6" title="The weight of gradients when updating the parameters of the machine learning model (the speed of the model learning). Too small learning rate can cause the learning process to converge slowly and therefre take too many iterations to learn the optimal parameters - too large values on the other hand may cause that the the model continuously 'overshoots' the minimum and never converges to the optimal parameters. The suitable learning rates can range between 10e-7 to 0.1."></span>;</li>
+							<li><span style="white-space: nowrap;">\(training\&nbsp;iteration=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="3" id="var_training_iter" placeholder="100" value="100" size="3" title="The number of training iterations (epochs)."></span>;</li>
+							<li><span style="white-space: nowrap;">\(batch\&nbsp;size=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="2" id="var_batch_size" placeholder="64" value="64" size="2" title="The number of samples for which the gradient is computed simultaneously during the gradient descent procedure."></span>.</li>
+						</ul>
+				</div>	
+				
+			<div class="lpanel">
+					<div id="resultFig1" style="max-width: 500px; max-height: 400px;"></div>	
+					<p align="justify">
+						<input type="checkbox" id="var_WF_1" onclick="plotFig1('resultFig1')" title="Check this to show Wave Functions" checked>
+						<label for="var_WF_1">Show Wave Functions</label>	
+						<br><input type="checkbox" id="var_E_1" onclick="plotFig1('resultFig1')" title="Check this to show Energies" checked>
+						<label for="var_E_1">Show Energies</label>	<br>	
+					</p>	
+				</div>
+				<div class="rpanelloss">
+					<div id="resultFig1_a" style="max-width: 500px; max-height: 250px;"></div>	
+					<br>
+					<span id="table_alpha" style="max-width: 500px;"></span>
+				</div>	
+				<div class="center-buttons">
+					<div class="centrebutt" >
+						<form id="Form2">	
+							<input class="Abutton" type="submit" id="submitdata" value="Run calculation / Update" style="max-width:200px;width:100%; margin: 10px;"/>	
+							<input class="Abutton" type="submit" id="defaultdata1" name="defaultdata1" value="Reset to default" style="max-width:200px;width:100%;"/>	
+							<script>	$("#defaultdata1").click(function(){$(this).data('clicked', true);	});	</script>	
+							<!-- <script>	$("#submitdata").click(function(){$(this).data('clicked', true);	});	</script>	 -->
+						</form>
+					</div>
+				</div>
+				<div style="clear:both;"></div><span class="blink_text" id="txt_SimulationTime"></span>
+			</section>
+		</span>
+	</div>		
+
+<!-- drop down section / Evaluation of the predictions -->
+
+	<div class="hdiv" id="aDIV3full">	
+		<div class="hdivtitle" onclick="HideDiv4('aDIV3','aDIV3full','aDIV3blink')">		
+			<div id="aDIV3blink" class="OpenSymbol-hr4">[+]</div>		
+			<div class="Text-hr4">&nbsp;&nbsp;Evaluation of the predictions&nbsp;&nbsp;</div>	
+		</div>
+
+		<span id="aDIV3" hidden>
+			<section class="SimFrame">
+
+				<form id="Form4">
+					<div class="divTop">
+						<p>In this section, we plot a target wave function with a corresponding predicted wave function 
+							for selected potential type
+							<select id="var_Pot_Type" title="This is the profile of the potential well" 
+								onchange="SetPotentialProfile();updateFigs();update_Data()">	
+								<option value="0">Polynomial potential	
+								<option value="1">Harmonic oscillator
+								<option value="2">Morse potential
+							</select> 	
+							and the number of the sample
+							<select id="N_sampl" title="Selection a sample for plotting "  onchange="SetNsample();plotFig2('resultFig2');">	</select>.
+
+						</p>
+					</div>
+					<!-- Rendering is different and depends on the type of potential -->
+				
+					<div class="lpanel">	
+														
+						<div id="resultFig2" style="max-width: 500px; max-height: 400px;"></div>
+						<input class="Abutton" type="submit" id="submitdata" onclick="save_data3('WF');" value="Save current data" style="max-width:500px;width:100%"/>								
+					</div>
+
+					<div class="rpanel">
+						<div> 
+							 \(\text{MSE} \) <span id="span_MSE"></span> 
+						</div>
+
+						<div id="polynomialPotential" class="divTop">
+							<p> 
+								<!-- For the polynomial potentials -->		
+								<span id="polynomial_Equation"></span>								
+							</p>							
+							<p><span id="table_alpha2"></span></p>
+						</div>			
+						<div id="harmonicOscillator" class="divTop" style="display: none;">
+							<!-- Content specific to Harmonic oscillator -->
+							<p> 
+								<!-- For harmonic oscillator the potential is determined from -->
+								<span id="ho_Equation"></span>
+							</p>
+							<div> 
+								\(\omega \) <span id="span_omega"></span> 
+						   </div>
+						</div>			
+						<div id="morsePotential" class="divTop" style="display: none;">
+							<!-- Content specific to Morse potential -->
+							<p>
+								<span id="morse_Equation"></span>
+							</p>
+						</div>	
+						
+						<p align="justify">
+							<input type="checkbox" id="var_WF_2" onclick="plotFig2('resultFig2')" title="Check this to show Wave Functions" checked>
+							<label for="var_WF_2">Show Wave Functions</label>	
+							<!-- <br><input type="checkbox" id="var_E_1" onclick="plotFig2('resultFig2')" title="Check this to show Energies" checked>
+							<label for="var_E_1">Show Energies</label> -->
+							<br><input type="checkbox" id="var_E_2" onclick="plotFig2('resultFig2')" title="Check this to show Energies" checked>
+							<label for="var_E_2">Show Energies</label>	<br>
+						</p>	
+					</div>				
+			
+				</form>	
+		
+				<div style="clear:both;"></div><span class="blink_text" id="txt_SimulationTime"></span>
+				<!-- drop down section / hiding part:Observable -->
+			
+				<div class="hdiv" id="aDIV5full">
+					<div class="hdivtitle" onclick="HideDiv4('aDIV5','aDIV5full','aDIV5blink')">		
+						<div id="aDIV5blink" class="OpenSymbol-hr4">[+]</div>		
+						<div class="Text-hr4">&nbsp;Observable&nbsp;&nbsp;</div>	
+					</div>	
+					
+					<!-- drop down section / hiding part -->
+					<span id="aDIV5" hidden>
+						<section class="SimFrame">
+	
+							<div class="lpanel">		
+								<div id="resultFig3" style="max-width: 500px; max-height: 400px;"></div>	
+								<input class="Abutton" type="submit" id="submitdata" onclick="save_data3('E');" value="Save current data" style="max-width:500px;width:100%"/>								
+							</div>
+							<div class="rpanel">
+								<div> 
+									<p>We use the energy formula to calculate the \(\text{MSE(E)}\) between the energy of the target wave function 
+										and the energy of the predicted wave function.</p>
+				
+									<p> \(\text{MSE(E)} \) <span id="span_MSE_E"></span> </p>
+								</div>										
+							</div>
+							<div style="clear:both;"></div><span class="blink_text" id="txt_SimulationTime"></span>
+						</section>	
+					</span>
+				</div>
+						
+				
+				<!-- rendering is different and depend of the type of potential -->
+
+
+			</section>	
+		</span>
+	</div>
+			
+<!-- ------------------------------------------------------------------------------------------------------------------>
+
+<hr>
+
+	<div class="divbuttons">
+
+		<div class="divbutton">
+			<p align="center">
+			<svg id="mysvg" viewBox="-2 -4 104 33" onclick="window.location.href='../EN/ex2.html'">
+			<path id="SVGstroke"
+			 d ="M   9  1
+			 L 99  1
+			 L 99  20
+			 L  9  20
+			 L  1  10
+			 Z"/>
+			<text id="SVGtext" x="50" y="12.5">	Exercise 2</text></svg></p>
+		</div>
+		<div class="divbutton">
+			<p align="center">
+				<svg id="mysvg" viewBox="-1 -2 102 29" onclick="window.location.href='../index.html'">
+
+				<defs>
+					<linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1" offset="0%"/>
+						<stop class="stop2" offset="50%"/>
+						<stop class="stop3" offset="100%"/>
+					</linearGradient>
+					<linearGradient id="Gradient1-hover" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1-hover" offset="0%"/>
+						<stop class="stop2-hover" offset="65%"/>
+						<stop class="stop3-hover" offset="100%"/>
+					</linearGradient>
+					<linearGradient id="Gradient1-active" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1-active" offset="0%"/>
+						<stop class="stop2-active" offset="50%"/>
+						<stop class="stop3-active" offset="100%"/>
+					</linearGradient>@tag:notebookLayout
+					<filter id="dropshadow" width="120%" height="120%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+						<feOffset dx="5" dy="10" result="offsetblur"/>
+						<feMerge>
+							<feMergeNode/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
+					<filter id="dropshadow-active" width="120%" height="120%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+						<feOffset dx="0" dy="1" result="offsetblur"/>
+						<feMerge>
+							<feMergeNode/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
+				</defs>
+
+				<path id="SVGstroke"
+				d ="M  1  1
+				L 50  5
+				L 99  1
+				L 99  20
+				L 50  24
+				L  1  20
+				Z"/>
+				<text id="SVGtext" x="50" y="12.5"> Back to content</text></svg>
+			</p>
+		</div>
+		<div class="divbutton">
+			<p align="center">
+				<svg id="mysvg" viewBox="-1 -2 102 29" onclick="window.location.href='../EN/ex4.html'">
+				<path id="SVGstroke"
+				d ="M  1  1
+				L 90  1
+				L 99  10
+				L 90  20
+				L  1  20
+				Z"/>
+				<text id="SVGtext" x="50" y="12.5">Exercise 4</text></svg>
+			</p>
+		</div>
+	</div>
+
+	<p class="author"> v.1.2 [15.06.2023-15.07.2024]. Full-stack programming and site design by M. Sosnova (<a href="mailto:mariya.v.sosnova@gmail.com?subject=The%20mail%20to%20M%20Sosnova">mariya.v.sosnova@gmail.com</a>)<p>
+	</div>
+<hr>
+<p style="text-align:center;font-size:1.8vw">THE PROJECT IS SUPPORTED BY</p>
+	<div class="logos-container">
+
+		<div style="display: inline-block; width:15%; padding-left: 1%; padding-right: 3%;">
+			<img alt="Euflag.png logo" src="../img/euflag.png" width="100%" style="vertical-align:middle"/>
+		</div>
+
+		<div style="display: inline-block; width:25%; padding-left: 3%; padding-right: 3%;">
+			<a href="https://www.digiq.eu/">
+				<img alt="Digiq logo" src="../img/digiqLogo.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>	
+
+		<div style="display: inline-block; width:30%; padding-left: 3%; padding-right: 3%;padding-bottom: 2%;">
+			<a href="http://www.centralesupelec.fr">
+				<img alt="CentraleSupelec logo" src="../img/CentraleSupelec RVB UPSaclay.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>
+		<div style="display: inline-block; width:15%; padding-left: 3%;padding-right: 1%; padding-bottom: 2%;">
+			<a href="http://www.ucf.edu">
+				<img alt="University of Central Florida logo" src="../img/1200px-University_of_Central_Florida_seal.svg.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>
+
+	</div>	
+</body>
+</html>

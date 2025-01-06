@@ -1,0 +1,79 @@
+.movingtitle{
+/* //	height: 40px; */
+/* //	width: 600px; */
+	width: 100%;
+/* //	position: absolute; */
+/* //	top: 50%; */
+/* //	left: 50%; */
+/* //	transform: translate(-50%,-50%); */
+	display: table;
+	text-align: center;
+}
+
+.movingtitle span{
+	font-famile: ARIAL;
+/*	font-size: 6em;*/
+	font-size: 9vw; /*	font-size: 10vw;*/
+	font-weight: bold;
+	color: rgb(45, 121, 160);
+	display: inline-block;
+	text-shadow: 0 2px 1px rgb(206, 128, 43);
+}
+
+.movingtitle:hover span{
+/*	font-famile: ARIAL;
+	font-size: 6em;
+	display: inline-block;*/
+	transform: all .5;
+	animation: animate 2s infinite;
+}
+@keyframes animate{
+	0%{
+		color: rgb(45, 121, 160);
+		transform: translate(0,0);
+		margin-left: 0;
+		text-shadow: 0 2px 1px rgb(206, 128, 43);
+	}
+	25%{
+		color: rgba(45, 121, 160,.6);
+		transform: translateY(-5);
+		margin-left: 10px;
+		text-shadow: 0 15px 5px rgb(206, 128, 43);
+	}
+}
+
+
+.movingtitle span:nth-child( 1 ){animation-delay:  0.058823529411764705s ;}
+.movingtitle span:nth-child( 2 ){animation-delay:  0.11764705882352941s ;}
+.movingtitle span:nth-child( 3 ){animation-delay:  0.17647058823529413s ;}
+.movingtitle span:nth-child( 4 ){animation-delay:  0.23529411764705882s ;}
+.movingtitle span:nth-child( 5 ){animation-delay:  0.29411764705882354s ;}
+.movingtitle span:nth-child( 6 ){animation-delay:  0.35294117647058826s ;}
+.movingtitle span:nth-child( 7 ){animation-delay:  0.4117647058823529s ;}
+.movingtitle span:nth-child( 8 ){animation-delay:  0.47058823529411764s ;}
+.movingtitle span:nth-child( 9 ){animation-delay:  0.5294117647058824s ;}
+.movingtitle span:nth-child( 10 ){animation-delay:  0.5882352941176471s ;}
+.movingtitle span:nth-child( 11 ){animation-delay:  0.6470588235294118s ;}
+.movingtitle span:nth-child( 12 ){animation-delay:  0.7058823529411765s ;}
+.movingtitle span:nth-child( 13 ){animation-delay:  0.7647058823529411s ;}
+.movingtitle span:nth-child( 14 ){animation-delay:  0.8235294117647058s ;}
+.movingtitle span:nth-child( 15 ){animation-delay:  0.8823529411764706s ;}
+.movingtitle span:nth-child( 16 ){animation-delay:  0.9411764705882353s ;}
+.movingtitle span:nth-child( 17 ){animation-delay:  1.0s ;}
+.movingtitle span:nth-child( 18 ){animation-delay:  1.0588235294117647s ;}
+.movingtitle span:nth-child( 19 ){animation-delay:  1.1176470588235294s ;}
+.movingtitle span:nth-child( 20 ){animation-delay:  1.1764705882352942s ;}
+.movingtitle span:nth-child( 21 ){animation-delay:  1.2352941176470589s ;}
+.movingtitle span:nth-child( 22 ){animation-delay:  1.2941176470588236s ;}
+.movingtitle span:nth-child( 23 ){animation-delay:  1.3529411764705883s ;}
+.movingtitle span:nth-child( 24 ){animation-delay:  1.411764705882353s ;}
+.movingtitle span:nth-child( 25 ){animation-delay:  1.4705882352941178s ;}
+.movingtitle span:nth-child( 26 ){animation-delay:  1.5294117647058822s ;}
+.movingtitle span:nth-child( 27 ){animation-delay:  1.588235294117647s ;}
+.movingtitle span:nth-child( 28 ){animation-delay:  1.6470588235294117s ;}
+.movingtitle span:nth-child( 29 ){animation-delay:  1.7058823529411764s ;}
+.movingtitle span:nth-child( 30 ){animation-delay:  1.7647058823529411s ;}
+.movingtitle span:nth-child( 31 ){animation-delay:  1.8235294117647058s ;}
+.movingtitle span:nth-child( 32 ){animation-delay:  1.8823529411764706s ;}
+.movingtitle span:nth-child( 33 ){animation-delay:  1.9411764705882353s ;}
+.movingtitle span:nth-child( 34 ){animation-delay:  2.0s ;}

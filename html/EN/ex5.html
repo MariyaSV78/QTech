@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="keywords" content="Quantum technology">
+	<title>Chapter 5 - Scanning tunneling microscopy</title>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160626805-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-160626805-1');
+	</script> -->
+		
+	<link href="../css/QMexercise.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/dropmenu.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/author.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/slideshow1.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/qtitle.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/tooltip.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/modal.css" rel="stylesheet" type="text/css" media="all">
+	<script src="../js/getFiles.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.blockUI.2.70.js" type="text/javascript"></script>
+	<script src="../js/plotly.min.js"></script>
+	<script src="../js/ServerUpdate5.js" type="text/javascript"></script>
+	<script src="../js/ServerUpdate.js" type="text/javascript"></script>
+	<script src="../js/common.js" type="text/javascript"></script>
+	<script src="../js/Figures5.js" type="text/javascript"></script>
+</head>
+
+<body onload="runOnce(0)" lang=EN>
+<script src="../js/chapitre5.js" type="text/javascript"></script>
+<script src="../js/save_json_data.js" type="text/javascript"></script>
+<script async src="../js/mathjax/MathJax.js?config=TeX-MML-AM_SVG-full"></script>
+
+
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		CommonHTML: {scale: 100},
+		SVG: { scale: 100},
+		matchFontHeight: true,
+		showMathMenu: false,
+		showMathMenuMSIE: false,
+	});
+	</script>
+	
+	<ul id="menu">
+		<li><a href="../index.html">Content</a></li>
+		<li>
+		<li><a href="../EN/tutorial1.html">Tutorial</a></li>
+		<li><a href="../EN/Contacts.html">Contacts</a></li>
+	</ul>
+<div class="divtitle">
+	<a href="..//index.html" title="Back to content" style="text-decoration:none;">
+	<div class="movingtitle">
+		<span>Q</span>
+		<span>U</span>
+		<span>A</span>				
+		<span>N</span>
+		<span>T</span>
+		<span>U</span>
+		<span>M</span>
+		<br>
+		<span>T</span>
+		<span>E</span>
+		<span>C</span>
+		<span>H</span>
+		<span>N</span>
+		<span>O</span>
+		<span>L</span>
+		<span>O</span>
+		<span>G</span>
+		<span>Y</span>
+	</div>
+	</a>
+</div>
+<hr>
+
+
+<!-- yellow background -->
+<div class="All">
+	<div class="title2" style="height:32vmin;height:43vm;position:relative;overflow:hidden;" onmouseleave="updateSlides()">
+		<div class="slideshow-container">
+			<div class="zeroSlide">
+				<a href="../EN/ex1.html">
+					<b>EXERCISE 1:</b> <br> Photoionization cross section
+				</a>
+			</div>
+	
+			<div class="zeroSlide">
+				<a href="../EN/ex2.html">
+					<b>EXERCISE 2:</b> <br> Spectroscopy of molecule
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex3.html">
+					<b>EXERCISE 3:</b> <br> Machine learning application
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex4.html">
+					<b>EXERCISE 4:</b> <br> Superconductivity: <br> Josephson junctions
+				</a>
+			</div>			
+
+			<div class="zeroSlide" style="display:block;">
+				<a href="#" style="pointer-events: none;">
+					<b>EXERCISE 5:</b> <br> Scanning tunneling microscopy
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex6.html">
+					<b>EXERCISE 6:</b> <br> Diffraction
+				</a>
+			</div>	
+
+			<div class="zeroSlide">
+				<a href="../EN/ex7.html">
+					<b>EXERCISE 7:</b> <br> Interferance
+				</a>
+			</div>
+
+		</div>
+
+		<br>
+		<a class="prev" onclick="slideIndex--;showSlides();" style="position:absolute;left:5px;top:45%;z-index:99">
+			<img alt="Back" style="border-style:none" src="../img/carousel_back.png" title="Previous exercise">
+		</a>
+		<a class="next" onclick="slideIndex++;showSlides();" style="position:absolute;right:5px;top:45%;z-index:99">
+			<img alt="Next" style="border-style:none" src="../img/carousel_next.png" title="Next exercise">
+		</a>
+		<div style="display: block;text-align: center;position:absolute;width:100%;bottom:5px;z-index:99">
+		<span class="dot" onclick="slideIndex = 0; showSlides();" title="EXERCISE 1"></span>
+		<span class="dot" onclick="slideIndex = 1; showSlides();" title="EXERCISE 2"></span>
+		<span class="dot" onclick="slideIndex = 2; showSlides();" title="EXERCISE 3"></span>
+		<span class="dot" onclick="slideIndex = 3; showSlides();" title="EXERCISE 4"></span>
+		<span class="dot active" onclick="slideIndex = 4; showSlides();" title="EXERCISE 5"></span>
+		<span class="dot" onclick="slideIndex = 5; showSlides();" title="EXERCISE 6"></span>
+		<span class="dot" onclick="slideIndex = 6; showSlides();" title="EXERCISE 7"></span>
+
+		</div>
+	</div>
+	<script>
+	var slideIndex =  4;
+	var prev_slideIndex =  slideIndex;
+	function showSlides() {
+		var slides = document.getElementsByClassName("zeroSlide");
+		var dots = document.getElementsByClassName("dot");
+		for (var i = 0; i < slides.length; i++) slides[i].style.display = "none";
+		for (var i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
+
+		slides[prev_slideIndex].offsetHeight; /* trigger reflow */
+		if(prev_slideIndex<slideIndex){
+			if (slideIndex > slides.length-1) slideIndex = 0;
+			slides[prev_slideIndex].style.left='-100%';
+			slides[slideIndex].style.left='0%';
+			slides[prev_slideIndex].style.animation=slides[slideIndex].style.animation='caroussel 1.5s';
+		}else{
+			if (slideIndex < 0) slideIndex = slides.length-1;
+			slides[prev_slideIndex].style.left='100%';
+			slides[slideIndex].style.left='0%';
+			slides[prev_slideIndex].style.animation=slides[slideIndex].style.animation='caroussel_back 1.5s';
+		}
+		slides[prev_slideIndex].style.display='block';
+		prev_slideIndex =  slideIndex;
+					
+		slides[slideIndex].style.display = "block";
+		dots[slideIndex].className += " active";
+	}
+	function updateSlides() {
+		if(slideIndex!= 4 ){
+			slideIndex= 4 ;
+			showSlides();
+		}
+	}
+	</script>
+	<hr>
+	<!-- introduction -->
+		<div>
+			<div>
+				<p>
+					<strong>Scanning Tunneling Microscopy</strong> (STM) is a type of microscope utilized for imaging surfaces at the atomic level.
+					It is based on the principle of quantum tunneling and was invented by Heinrich Rohrer and Gerd Binnig in 1981, 
+					for which they were awarded the Nobel Prize in Physics in 1986 [1](#Bibliography). 
+
+					Its widespread applications across physics, chemistry, and materials science have revolutionized our understanding 
+					of surface structures, electronic properties, and the intricate world of nanoscale phenomena. Operating as a non-optical technique, 
+					STM stands as an indispensable tool for the precise investigation and manipulation of matter, 
+					opening new frontiers in the exploration of nanomaterials and nanodevices [2](#Bibliography).
+				</p>
+				<p>
+				
+					<strong>STM operates through three primary modes:</strong>
+
+					<ol>
+						<li>  <strong>Imaging mode</strong>: this mode encompasses two scanning regimes for achieving atomic resolution of the sample surface morphology:
+							<ul>
+								<li> <ins>Constant-current mode</ins>(Fig. 1(b)): here, a feedback loop maintains a constant tunneling current between the tip and sample at each lateral position \((x,y)\). Consequently, the tip's \(z\)-position requires adjustment during scanning.</li>
+			
+								<li> <ins>Constant-height mode </ins>(Fig. 1(c)): when the tunneling current is measured at a fixed vertical position \(z\) of the tip. </li>
+							</ul>
+						</li>
+						<br>
+						<li>
+							<strong>Spectroscopy mode</strong>: in this mode, the resulting tunelling current $I$ is monitored as a function of changing parameters \(z\) or \(V\):
+							<ul>
+								<li> <ins>\(I(z)\) spectroscopy</ins>: involves ramping the distance \(z\) at a fixed voltage \(V\), useful for characterizing the quality, sharpness, and cleanliness of the STM tip.</li> 
+		
+								<li> <ins>\(I(V)\) spectroscopy</ins>: measures the tunelling current as a function of voltage \(V\), offering crucial insights into the surface electronic structure, including barrier heights, local density of states, and analysis of modes of molecular motion.</li> 
+							</ul>
+						</li>
+						<br>
+						<li>
+							<strong>Manipulation mode</strong>: This mode allows for the deliberate manipulation of atoms and molecules on the sample surface using 
+							the STM tip. By applying voltage pulses or carefully adjusting the tip-sample distance, it becomes possible to pick up, move, 
+							and position atoms or molecules with precision. This capability opens avenues for constructing nanostructures, 
+							investigating surface reactions, and studying the behavior of individual atoms and molecules in real-time [3](#Bibliography).
+						</li>
+					</ol>
+
+				</p>
+				<div class="center-image">
+
+					<img alt="Schema of STM" src="../img/images_STM/scheme_STM_09_04.png" style="max-width: 800px; max-height: 600px;"/>
+				</div>
+				
+			</div>					
+		</div>
+
+<!-- drop down section / Tunneling a single particle throught a one-dimentional potential barrier-->
+	<div class="hdiv" id="aDIV10full">	
+		<div class="hdivtitle" onclick="HideDiv4('aDIV10','aDIV10full','aDIV10blink')">		
+			<div id="aDIV10blink" class="OpenSymbol-hr4">[+]</div>		
+			<div class="Text-hr4">&nbsp;Tunneling a single particle throught a one-dimentional potential barrier &nbsp;</div>	
+		</div>	
+
+		<!-- data entry, plotting (gray background) -->
+		<span id="aDIV10" hidden>
+			<section class="SimFrame">
+				<div class="divTop">
+					In quantum mechanics, the electron penetration through a potential barrier, \(U(z)\) 
+					is described by a wave function \(\psi(z)\) that can be obtained from the Schrödinger equation:
+
+					$$ \frac{-\hbar^2}{2m}\frac{d^2\psi(z)}{dz^2} + U(z)\psi(z) = E\psi(z) $$
+
+					where \(\hbar\) is the reduced Planck’s constant, \(m\) is the mass of the electron, \(E\) is its energy and \(z\) its position.
+				</div>	
+
+				<br>
+				<div class="lpanel">	
+					<div class="center-image" >															
+
+						<img alt="Schema of a one-dimentional potential barrier" src="../img/images_STM/Fig_2a_01_03.png" style="max-width: 480px; max-height: 420px;"/>
+					</div>
+					<!-- <div id="resultFig1" style="max-width: 500px; max-height: 400px;"></div> -->
+				</div>	
+
+				<div class="rpanel">
+					In the case of a rectangular potential barrier \(U(z)\) the solution to the wave equation for each region , sample (s), barrier (b) and tip (t) are written as:
+				
+    				<p> \(z >=0\) and \(U(z) = 0\): </p>
+					<p>&nbsp&nbsp\(\psi_s(z) = e^{ikz} + Ae^{-ikz} \) - incoming wave + reflected wave;</p>
+
+					<p> \(0 < z < d\) and \(U(z) = U\)</p>
+					<p> &nbsp&nbsp\(\psi_b(z) = Be^{-\varkappa z} + Ce^{\varkappa z}\) - - decaying in barrier;</p>
+
+    				<p> \(z < d\) and \(U(z) = 0\): </p>
+					<p>&nbsp&nbsp\(\psi_t(z) = De^{ikz} \) - transmitted wave;</p>
+
+					<p> where \(k = \frac{\sqrt{2mE_0}}{\hbar}\) and \(\varkappa = \frac{\sqrt{2m(U - E_0)}}{\hbar}\)</p>
+ 
+					<p> The coefficients A, B, C and D result from the wave function continuity condition at two interface.</p>
+				</div>
+				<br>
+				<div class="container">	
+					<div class="lpanel">	
+					
+						<div class="center-image" >															
+							<div id="resultFig1" style="max-width: 480px; max-height: 420px;"></div>
+							<!-- <input class="Abutton" type="submit" id="submitdata" onclick="save_data3('Ej_Ec');" value="Save current data" style="max-width: 400px; max-height: 400px;"/>								 -->
+						</div>				
+					</div>
+			
+
+					<div class="rpanel">		
+						<p align="left"><br> The following variables were used for calculations:<br>
+
+							<br><span style="white-space: nowrap;">\(U = \)&nbsp&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="3" id="var_U" placeholder="1000" value="1" size="5" title="The barrier height. "> eV </span>
+						
+							<br><span style="white-space: nowrap;">\(E_{0} = \) <input type="text" class="numinput" autofocus required="required" maxlength="3" id="var_E_0"  value="0.5" size="5" title="The particle energy"> eV </span>&nbsp;
+							<br><span style="white-space: nowrap;">\(d_p= \)&nbsp&nbsp<input type="text" class="numinput"  autofocus required="required" maxlength="2" id="var_dp" placeholder="200" value="10" size="5" title="The barrier width"> &#8491; </span>
+							<br><br>			
+						</p>	
+						<p>
+							\(A\) <span id="span_A"></span> <br><br>
+							\(B\) <span id="span_B"></span> <br><br>
+							\(C\) <span id="span_C"></span> <br><br>
+							\(D\) <span id="span_D"></span>
+						</p>
+					</div>
+
+				</div>
+
+				<div class="container">	
+					<div class="lpanel">	
+						<div class="centrebutt">
+						<p>So, in this case, for low particle energy (\(E_0 << U\))  and wide rectangular barrier (\(\varkappa d >> 1\)), the probability of transmission simplifies to:	</p>
+
+							$$T(E) = T_0 \exp{\left(-\frac{2d}{\hbar}\sqrt{2m(U - E_0)}\right)}$$
+							
+							where \(T_0 = 4\left[1 + \frac{1}{4} \left(\frac{\varkappa}{k} - \frac{k}{\varkappa}\right)^2\right]^{-1}\).
+						</div>
+					</div>
+
+					<div class="rpanel">	
+						
+							<div class="center-image" >															
+								<div id="resultFig2" style="max-width: 500px; max-height: 400px;"></div>
+								<!-- <input class="Abutton" type="submit" id="submitdata" onclick="save_data3('Ej_Ec');" value="Save current data" style="max-width: 400px; max-height: 400px;"/>								 -->
+							</div>				
+					</div>	
+				</div>
+				<div class="center-buttons">
+					<div class="centrebutt" >
+						<form id="Form1">
+							<br><br>		
+								<input class="Abutton" type="submit" id="submitdata" value="Run calculation/Update" style="max-width:180px;width:100%"/>	
+								<input class="Abutton" type="submit" id="defaultdata" name="defaultdata" value="Reset to default" style="max-width:180px;width:100%"/>	
+								<script>	$("#defaultdata").click(function(){$(this).data('clicked', true);	});	</script>	
+								<!-- <script>	$("#updatedata").click(function(){$(this).data('clicked', true);	});	</script>	 -->
+
+							<br>	
+						</form>	
+					</div>
+				</div>
+
+				<div style="clear:both;"></div><span class="blink_text" id="txt_SimulationTime"></span>
+			</section>
+		</span>
+	</div>			
+
+
+	<!-- drop down section / Tunneling current density in metal-insulator-metal system-->
+	<div class="hdiv" id="aDIV2full">	
+		<div class="hdivtitle" onclick="HideDiv4('aDIV2','aDIV2full','aDIV2blink')">		
+			<div id="aDIV2blink" class="OpenSymbol-hr4">[+]</div>		
+			<div class="Text-hr4">&nbsp;Tunneling current density in metal-insulator-metal system &nbsp;</div>	
+		</div>	
+
+		<!-- data entry, plotting (gray background) -->
+		<span id="aDIV2" hidden>
+			<section class="SimFrame">
+				<div class="divTop">
+					Let's consider a metal-insulator-metal (MIM) system with an arbitrary shape of potential barrier. The applied bias 
+					\(V\) leads to the initiation of a tunneling current which depends on the energy density of states \(n(p_z)\) and the probability 
+					\(T(E_z)\) of electron transmission through the barrier of height \(U(z)\). \(N_1\) and \(N_2\) are the number of electrons tunneling through the barrier in two directions, which determine the value of current.
+					<!-- \(Φ_t\), \(Φ_s\) are the work functions of the materials of the tip and sample, respectively. -->
+					<br>
+					Using the WKB approximation, we can derive an expression for the density of tunneling curren:			
+						
+				</div>	
+				<br>
+				<div class="lpanel">	
+					<img alt="Model of MIM system with an arbitrary shape of potential barrier" src="../img/images_STM/Fig_3a_07_03.png" style="max-width: 450px; max-height: 450px;"/>
+	
+				</div>	
+
+				<div class="rpanel">
+
+					$$ J = \frac{J_0}{\delta_z^2}\left\{\bar \phi \exp\left[{-A\delta_z\sqrt{\bar \phi}}\right] - (\bar \phi + eV) \exp\left[-A\delta_z\sqrt{\bar \phi + eV}\right] \right\}$$
+					<br>
+					\( J_0 = \frac{e}{4\pi^2\beta^2\hbar} \) and \( A = 2\beta\sqrt{\frac{2m}{\hbar^2}}\), 
+					<br><br> 
+					where <br> \(e\) is the elementary charge, 
+					<br>\(δ_z\) is the distance between two contacts, 
+					<br>\(\bar \phi\) - average barrier height,
+					<br> \(\beta\) - the correction factor that depends on the bais, for more details refer to[7](#Bibliography).  
+
+
+					<p align="left"><br> The following variables were used for calculations:<br>
+
+						<br><span style="white-space: nowrap;">\(\Phi_s = \)&nbsp&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="2" id="var_Phi_s" placeholder="1000" value="4.7" size="5" title="Work functions of sample's material"> eV; </span>	
+						<span style="white-space: nowrap;">\(\Phi_t = \) <input type="text" class="numinput" autofocus required="required" maxlength="2" id="var_Phi_t"  value="5.3" size="5" title="Work functions of tip's material"> eV; </span>&nbsp;
+						<br><span style="white-space: nowrap;">\(d = \)&nbsp&nbsp<input type="text" class="numinput"  autofocus required="required" maxlength="2" id="var_d" placeholder="200" value="10" size="5" title="The barrier width"> &#8491 ; </span>
+						<span style="white-space: nowrap;">\(S = \)&nbsp&nbsp<input type="text" class="numinput"  autofocus required="required" maxlength="4" id="var_S" placeholder="200" value="10" size="5" title="The  contact area square"> nm\(^2\); </span>
+						<br><span style="white-space: nowrap;">\(V = \)&nbsp&nbsp<input type="text" class="numinput"  autofocus required="required" maxlength="2" id="var_V" placeholder="200" value="0.3" size="5" title="The  voltage"> V; </span>
+
+					</p>	
+				</div>
+				
+				<br>
+				<div class="centrebutt">
+					To plot the dependence of the tunneling current \(I\) on the applied voltage \(V\) determine the barrier parameters and an appropriate range of operating voltages:						
+				
+					<select id="var_Vrange" title="The range of operating voltages" 
+						onchange="SetVoltageRange(), updateFigs()  ">
+						<option value="0">Whole range</option>
+						<option value="1">\(Low-Voltage:\) &#160; \(V \approx 0\)</option>
+						<option value="2">\(Intermediate-Voltage:\)&#160; \(eV &lt; \Phi_t\)</option>
+						<option value="3">\(High-Voltage:\)&#160; \(eV &gt; \Phi_t\)</option>
+					</select> 	
+					<br>
+				</div>
+				<br> <br>
+
+				
+				<div id="wholeRange">
+				
+					<div class="center-image" >															
+						<div id="resultFig3" style="max-width: 450px; max-height: 450px;"></div>
+
+						<p align="justify">
+							<input type="checkbox" id="lowR" onclick="plotFig3('resultFig3')" title="Check to show Low-Voltage range">
+							<label for="lowR">Low-Voltage range</label>	<br>
+							<input type="checkbox" id="intermediateR" onclick="plotFig3('resultFig3')" title="Check to show Intermediate-Voltage range">
+							<label for="intermediateR">Intermediate-Voltage range</label> <br>
+							<input type="checkbox" id="highR" onclick="plotFig3('resultFig3')" title="Check this to show High-Voltage range">
+							<label for="highR">High-Voltage range</label> 
+						</p>
+					</div>																	
+				</div>	
+
+				<div id="lowRange" style="display: none;">
+
+
+					<div class="lpanel">
+						$$ J_L = \frac{J_{0L}}{\delta_z} \sqrt{\bar \phi}V \exp \left[ -A\delta_z\sqrt{\bar \phi}\right],$$
+					</div>
+
+					<div class="rpanel">
+						$$ J_{0L} = \frac{e^2\sqrt{2m}}{4\pi^2\hbar^2\beta} $$
+						$$ \delta_z = d \text{ and }  \bar \phi = (\Phi_s + \Phi_t) / 2$$.
+					</div>
+					
+					<div class="lpanel">						
+						<img alt="Potential barrier Diagram of MIM system: low range" src="../img/images_STM/Fig_3b_lowRange.png" style="max-width: 500px; max-height: 400px;"/><br>
+					
+					</div>
+					<div class="rpanel">
+						<div id="resultFig3_low" style="max-width: 500px; max-height: 400px;"></div>
+					</div>
+				</div>
+
+
+				<div id="intermediateRange" style="display: none;">
+
+					<div class="lpanel">
+						$$
+						\small{
+						\begin{equation}
+						\begin{split}
+							J_I = \frac{J_{0I}}{\delta_z^2} \Bigg\{ & \left(\phi_s - \frac{eV}{2}\right) \exp{\left(-A d \sqrt{\phi_s -  \frac{eV}{2}}\right)} \\
+							& - \left(\phi_s + \frac{eV}{2}\right) \exp{\left(-A d \sqrt{\phi_s + \frac{eV}{2}}\right)} \Bigg\}
+						\end{split}
+						\end{equation}
+						}
+						$$
+					</div>
+
+					<div class="rpanel">
+						$$ J_{0I} = \frac{e}{4\pi^2\beta^2 \hbar},$$
+						$$\beta = 1 - (eV)^2/96 (\phi_s - eV/2)^2$$
+						$$\delta_z = d \text{ and } \bar \phi = (\Phi_s + \Phi_t - eV) / 2$$ .						
+					</div>
+
+					<div class="lpanel">
+
+						<img alt="Potential barrier Diagram of MIM system: intermediate range" src="../img/images_STM/Fig_3c_intermediateRange.png" style="max-width: 500px; max-height: 400px;"/>
+					</div>
+
+					<div class="rpanel">
+						<div id="resultFig3_intermediate" style="max-width: 500px; max-height: 400px;"></div> 
+					</div>
+
+				</div>
+
+				<div id="highRange" style="display: none;">
+					<div class="lpanel">
+
+						$$
+						\small{
+						\begin{equation}
+						\begin{split}
+							J_H = \frac{J_{0H}}{\Phi_s} & \left\{ \exp{\left[ -A_H\Phi_s^{3/2}\right]} - \right. \\
+							& \left. \left( 1 + \frac{2eV}{\Phi_s}\right) \exp{\left[ -A_H\Phi_s^{3/2} \sqrt{1 + \frac{2eV}{\Phi_s}} \right]} \right\}
+						\end{split}
+						\end{equation}
+						}
+						$$
+						
+
+					</div>
+
+					<div class="rpanel">
+						$$ J_{0H} = \frac{e^3F^2}{8\pi^2\hbar\beta^2} \text{ and } A_H = 2  \frac{\beta \sqrt(m)}{eF\hbar};$$
+						$$\beta = 23/24, \text{  } \delta_z = d  \Phi_s(\Phi_s + \Phi_t + eV), \text{ and } \bar \phi = \Phi_s/2, $$
+						where \(F = V/d\) defines the electric field strength in the insulator
+					</div>
+										
+					<div class="lpanel">
+						<img alt="Potential barrier Diagram of MIM system: high range" src="../img/images_STM/Fig_3d_highRange.png" style="max-width: 500px; max-height: 400px;"/>
+					</div>
+
+					<div class="rpanel">
+						<div id="resultFig3_high" style="max-width: 500px; max-height: 400px;"></div>
+					</div>
+
+
+
+				</div>
+
+				<div class="center-buttons">
+					<div class="centrebutt" >
+
+						<form id="Form2">	
+							<br><br>
+							<input class="Abutton" type="submit" id="submitdata" value="Run calculation/Update" style="max-width:180px;width:100%"/>	
+							<input class="Abutton" type="submit" id="defaultdata1" value="Reset to default" style="max-width:180px;width:100%"/>	
+							<script>	$("#defaultdata1").click(function(){$(this).data('clicked', true);	});	</script>	
+							<script>	$("#submitdata").click(function(){$(this).data('clicked', true);	});	</script>	
+
+						</form>
+					</div>
+				</div>
+
+
+				<div style="clear:both;"></div><span class="blink_text" id="txt_SimulationTime"></span>
+			</section>
+		</span>
+	</div>			
+
+
+	<!-- drop down section / Modeling the operation of STM-->
+
+	<div class="hdiv" id="aDIV11full">	
+		<div class="hdivtitle" onclick="HideDiv4('aDIV11','aDIV11full','aDIV11blink')">		
+			<div id="aDIV11blink" class="OpenSymbol-hr4">[+]</div>		
+			<div class="Text-hr4">&nbsp;&nbsp;Modeling the operation of STM&nbsp;&nbsp;</div>	
+		</div>	
+		<!-- drop down section / hiding part -->
+		<span id="aDIV11" hidden>
+			<section class="SimFrame">
+				<div class="divTop">
+					In constant-height mode (Fig.1(c)) the vertical position \(z\) of the tip remains fixed throughout the scanning process. 
+					However, any change in relief height on the sample surface alters the distance between the tip and the sample, 
+					consequently leading to variations in the tunneling current between them. 
+				</div>	
+
+			<div>		
+				<!-- <form id="Form5"> -->
+					<div class="lpanel">
+						<img alt="The tunnel current on the distance between the tip and the surface of the sample" src="../img/images_STM/Fig_5.png" style="max-width: 500px; max-height: 400px;"/>
+					</div>
+
+					<div class="rpanel" style="font-size: 18px;">
+						<p>
+							The figure demonstrates a simulation of STM operation in the constant-height mode:
+						</p>
+						<p>
+							the green line represents the trajectory of the tip above the surface of the sample (black line).						</p>
+						<p>
+							the middle figure shows the change in distance between the surface and the sample during the measurement process.						</p>
+						<p>
+							the last figure shows the change in the tunnel current, which is measured during the experiment.
+						</p>
+					</div>	
+				<!-- </form>	 -->
+			</div>
+
+
+				<!-- 				
+				<div class="lpanel">
+					<div id="resultFig5_2" style="max-width: 500px; max-height: 400px;"></div>	
+				</div>
+				<div class="lpanel">
+					<div> 	
+						<img alt="Carbon_monoxide_IR_rotational-vibrational_spectrum" src="../img/Fig5_3_new.png" style="max-width: 500px; max-height: 400px;"/>
+					</div>
+				</div> -->
+
+				<div style="clear:both;"></div><span class="blink_text" id="txt_SimulationTime"></span>
+			</section>	
+		</span>
+	</div>
+
+
+
+	<hr>
+
+	<div class="divbuttons">
+
+		<div class="divbutton">
+			<p align="center">
+			<svg id="mysvg" viewBox="-2 -4 104 33" onclick="window.location.href='../EN/ex4.html'">
+			<path id="SVGstroke"
+			 d ="M   9  1
+			 L 99  1
+			 L 99  20
+			 L  9  20
+			 L  1  10
+			 Z"/>
+			<text id="SVGtext" x="50" y="12.5">	Exercise 4</text></svg></p>
+		</div>
+		<div class="divbutton">
+			<p align="center">
+				<svg id="mysvg" viewBox="-1 -2 102 29" onclick="window.location.href='../index.html'">
+
+				<defs>
+					<linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1" offset="0%"/>
+						<stop class="stop2" offset="50%"/>
+						<stop class="stop3" offset="100%"/>
+					</linearGradient>
+					<linearGradient id="Gradient1-hover" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1-hover" offset="0%"/>
+						<stop class="stop2-hover" offset="65%"/>
+						<stop class="stop3-hover" offset="100%"/>
+					</linearGradient>
+					<linearGradient id="Gradient1-active" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1-active" offset="0%"/>
+						<stop class="stop2-active" offset="50%"/>
+						<stop class="stop3-active" offset="100%"/>
+					</linearGradient>
+					<filter id="dropshadow" width="120%" height="120%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+						<feOffset dx="5" dy="10" result="offsetblur"/>
+						<feMerge>
+							<feMergeNode/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
+					<filter id="dropshadow-active" width="120%" height="120%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+						<feOffset dx="0" dy="1" result="offsetblur"/>
+						<feMerge>
+							<feMergeNode/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
+				</defs>
+
+				<path id="SVGstroke"
+				d ="M  1  1
+				L 50  5
+				L 99  1
+				L 99  20
+				L 50  24
+				L  1  20
+				Z"/>
+				<text id="SVGtext" x="50" y="12.5">Back to content</text></svg>
+			</p>
+		</div>
+		<div class="divbutton">
+			<p align="center">
+				<svg id="mysvg" viewBox="-1 -2 102 29" onclick="window.location.href='../EN/ex6.html'">
+				<path id="SVGstroke"
+				d ="M  1  1
+				L 90  1
+				L 99  10
+				L 90  20
+				L  1  20
+				Z"/>
+				<text id="SVGtext" x="50" y="12.5">Exercise 6</text></svg>
+			</p>
+		</div>
+	</div>
+
+	<p class="author"> v.1.2 [15.06.2023-15.07.2024]. Full-stack programming and site design by M. Sosnova (<a href="mailto:mariya.v.sosnova@gmail.com?subject=The%20mail%20to%20M%20Sosnova">mariya.v.sosnova@gmail.com</a>)<p>
+	</div>
+<hr>
+<p style="text-align:center;font-size:1.8vw">THE PROJECT IS SUPPORTED BY</p>
+	<div class="logos-container">
+
+		<div style="display: inline-block; width:15%; padding-left: 1%; padding-right: 3%;">
+			<img alt="Euflag.png logo" src="../img/euflag.png" width="100%" style="vertical-align:middle"/>
+			<!-- <p class="text-xs"> This project has received funding from the European Union. </p> -->
+		</div>
+
+		<div style="display: inline-block; width:25%; padding-left: 3%; padding-right: 3%;">
+			<a href="https://www.digiq.eu/">
+				<img alt="Digiq logo" src="../img/digiqLogo.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>	
+
+		<div style="display: inline-block; width:30%; padding-left: 3%; padding-right: 3%;padding-bottom: 2%;">
+			<a href="http://www.centralesupelec.fr">
+				<img alt="CentraleSupelec logo" src="../img/CentraleSupelec RVB UPSaclay.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>
+		<div style="display: inline-block; width:15%; padding-left: 3%;padding-right: 1%; padding-bottom: 2%;">
+			<a href="http://www.ucf.edu">
+				<img alt="University of Central Florida logo" src="../img/1200px-University_of_Central_Florida_seal.svg.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>
+
+	</div>	
+</body>
+</html>

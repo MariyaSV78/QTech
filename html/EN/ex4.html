@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="keywords" content="Quantum technology">
+	<!-- <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://notebooks.gesis.org/"> -->
+
+	<title>Chapter 4 - Superconductivity: Josephson junctions</title>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160626805-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-160626805-1');
+	</script> -->
+		
+	<link href="../css/QMexercise.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/dropmenu.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/author.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/slideshow1.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/qtitle.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/tooltip.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/modal.css" rel="stylesheet" type="text/css" media="all">
+	<script src="../js/getFiles.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.blockUI.2.70.js" type="text/javascript"></script>
+	<script src="../js/plotly.min.js"></script>
+	<script src="../js/ServerUpdate4.js" type="text/javascript"></script>
+	<script src="../js/ServerUpdate.js" type="text/javascript"></script>
+	<script src="../js/common.js" type="text/javascript"></script>
+	<script src="../js/Figures4.js" type="text/javascript"></script>
+</head>
+
+<!-- <body lang=EN> -->
+<body onload="runOnce(0)" lang=EN></body>
+<script src="../js/chapitre4.js" type="text/javascript"></script>
+<script src="../js/save_json_data.js" type="text/javascript"></script>
+<script async src="../js/mathjax/MathJax.js?config=TeX-MML-AM_SVG-full"></script>
+
+
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		CommonHTML: {scale: 100},
+		SVG: { scale: 100},
+		matchFontHeight: true,
+		showMathMenu: false,
+		showMathMenuMSIE: false,
+	});
+	</script>
+	
+	<ul id="menu">
+		<li><a href="../index.html">Content</a></li>
+		<li>
+		<li><a href="../EN/tutorial1.html">Tutorial</a></li>
+		<li><a href="../EN/Contacts.html">Contacts</a></li>
+	</ul>
+<div class="divtitle">
+	<a href="..//index.html" title="Back to content" style="text-decoration:none;">
+	<div class="movingtitle">
+		<span>Q</span>
+		<span>U</span>
+		<span>A</span>
+		<span>N</span>
+		<span>T</span>
+		<span>U</span>
+		<span>M</span>
+		<br>
+		<span>T</span>
+		<span>E</span>
+		<span>C</span>
+		<span>H</span>
+		<span>N</span>
+		<span>O</span>
+		<span>L</span>
+		<span>O</span>
+		<span>G</span>
+		<span>Y</span>
+	</div>
+	</a>
+</div>
+<hr>
+
+<!-- yellow background -->
+<div class="All">
+	<div class="title2" style="height:32vmin;height:43vm;position:relative;overflow:hidden;" onmouseleave="updateSlides()">
+		<div class="slideshow-container">
+			<div class="zeroSlide">
+				<a href="../EN/ex1.html">
+					<b>EXERCISE 1:</b> <br> Photoionization cross section
+				</a>
+			</div>
+	
+			<div class="zeroSlide">
+				<a href="../EN/ex2.html">
+					<b>EXERCISE 2:</b> <br> Spectroscopy of molecule
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex3.html">
+					<b>EXERCISE 3:</b> <br> Machine learning application
+				</a>
+			</div>
+			
+			<div class="zeroSlide" style="display:block;">
+				<a href="#" style="pointer-events: none;">
+					<b>EXERCISE 4:</b> <br> Superconductivity:<br>Josephson junctions
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex5.html">
+					<b>EXERCISE 5:</b> <br> Scanning tunneling microscopy
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex6.html">
+					<b>EXERCISE 6:</b> <br> Diffraction
+				</a>
+			</div>	
+
+			<div class="zeroSlide">
+				<a href="../EN/ex7.html">
+					<b>EXERCISE 7:</b> <br> Interferance
+				</a>
+			</div>
+
+
+		</div>
+
+		<br>
+		<a class="prev" onclick="slideIndex--;showSlides();" style="position:absolute;left:5px;top:45%;z-index:99">
+			<img alt="Back" style="border-style:none" src="../img/carousel_back.png" title="Previous exercise">
+		</a>
+		<a class="next" onclick="slideIndex++;showSlides();" style="position:absolute;right:5px;top:45%;z-index:99">
+			<img alt="Next" style="border-style:none" src="../img/carousel_next.png" title="Next exercise">
+		</a>			
+		<div style="display: block;text-align: center;position:absolute;width:100%;bottom:5px;z-index:99">
+		<span class="dot" onclick="slideIndex = 0; showSlides();" title="EXERCISE 1"></span>
+		<span class="dot" onclick="slideIndex = 1; showSlides();" title="EXERCISE 2"></span>
+		<span class="dot" onclick="slideIndex = 2; showSlides();" title="EXERCISE 3"></span>
+		<span class="dot active" onclick="slideIndex = 3; showSlides();" title="EXERCISE 4"></span>
+		<span class="dot" onclick="slideIndex = 4; showSlides();" title="EXERCISE 5"></span>
+		<span class="dot" onclick="slideIndex = 5; showSlides();" title="EXERCISE 6"></span>
+		<span class="dot" onclick="slideIndex = 6; showSlides();" title="EXERCISE 7"></span>
+		
+		</div>
+	</div>
+	<script>
+	var slideIndex =  3;
+	var prev_slideIndex =  slideIndex;
+	function showSlides() {
+		var slides = document.getElementsByClassName("zeroSlide");
+		var dots = document.getElementsByClassName("dot");
+		for (var i = 0; i < slides.length; i++) slides[i].style.display = "none";
+		for (var i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
+
+		slides[prev_slideIndex].offsetHeight; /* trigger reflow */
+		if(prev_slideIndex<slideIndex){
+			if (slideIndex > slides.length-1) slideIndex = 0;
+			slides[prev_slideIndex].style.left='-100%';
+			slides[slideIndex].style.left='0%';
+			slides[prev_slideIndex].style.animation=slides[slideIndex].style.animation='caroussel 1.5s';
+		}else{
+			if (slideIndex < 0) slideIndex = slides.length-1;
+			slides[prev_slideIndex].style.left='100%';
+			slides[slideIndex].style.left='0%';
+			slides[prev_slideIndex].style.animation=slides[slideIndex].style.animation='caroussel_back 1.5s';
+		}
+		slides[prev_slideIndex].style.display='block';
+		prev_slideIndex =  slideIndex;
+					
+		slides[slideIndex].style.display = "block";
+		dots[slideIndex].className += " active";
+	}
+	function updateSlides() {
+		if(slideIndex!= 3 ){
+			slideIndex= 3 ;
+			showSlides();
+		}
+	}
+	</script>
+	<hr>
+	<div>
+		<p>
+			This <a href="https://mybinder.org/v2/gh/QTechEdu/QTech_notebooks/HEAD?labpath=PhyQ_JJ.ipynb" target="_blank">notebook</a> introduces the fundamental concepts of quantum computation, 
+			covering qubits and the physical systems necessary to their practical implementation. 
+			Quantum computing requires maintaining quantum effects in large systems, which presents a challenge even with current materials 
+			or quantum circuits developed through modern manufacturing techniques.
+		</p>
+		
+		
+			<div id="infoSection" style="display: none;">
+				<br> <hr>
+				<p>
+					Superconductors are materials which are characterized by a non-zero critical temperature \(T_c\) below which a phase transition happens and the material has zero resistivity. 
+					At the same time, it is marked by phenomena like the persistence of electric currents inside the superconductor or the Meissner effect, i.e. the expulsion of the magnetic fields from within it.
+				</p>
+				<p>
+					One distinguishes two different types of superconductors:
+					<ul>
+						<li>low temperature superconductors, when their critical temperature is lower than \(30\,K\) and can be described using the BCS theory;</li>
+						<li>high temperature superconductors, which critical temperature is higher than \(30\,K\).</li>
+					</ul>
+				</p>
+				<p>
+					To be a good material for a qubit implementation, a superconductor should have a critical temperature larger than \(1\,K\) and an operating temperature around \(20\,mK\), which allows for the operation to be not affected by the thermal noise and therefore decoherence.
+				</p>
+				<button id="closeInfo">Close</button>
+					
+					
+				<hr>
+			</div>
+		<p>
+			With the use of <a href="#" id="showInfo">superconductivity</a> one can manufacture highly non-dissipative quantum systems displaying non-linear inductance called <b><em>Josephson junctions</em></b>, 
+			which constitute a physical realization of qubits used in quantum computing. 
+			Both the non-linearity and non-dissipativeness are of the utmost importance for the control and maintenance of the quantum states. 
+			Using them, one can perform linear algebra on superposition states using quantum mechanical means, 
+			in order to perform computation using specially designed quantum algorithms (which are very much distinct from 
+			the classical algorithms used in classical computers) or to perform simulations of quantum mechanical systems.
+		</p>
+
+		<div class="container">	
+			<div class="lsect">
+				<div class="center-image" >
+					<img alt="Josephson junction" src="../img/images_JJ/JJ.png" style="max-width: 400px; max-height: 400px; ">
+
+				</div>
+			</div>
+
+			<div class="rsect">
+				An isolated Josephson junction comprises two superconducting films separated by a thin insulating layer, allowing for the tunneling of Cooper pairs (bosonic states composed of electron pairs) between the electrodes. 
+				In the manufacturing process, nanolithography is employed to create a superconducting electrode from aluminum followed by its oxidation to obtain a layer of insulating aluminium oxide and finally application of another superconducting electrode.			
+			</div>
+		</div>
+
+		<div class="container">	
+			<div class="lsect">
+				The main object of study is the <em>voltage-biased Josephson junction</em> (<em>charge qubits</em>) obtained from a connecting the Josephson junction to a capacitor \(C_g\) and then connecting it to a voltage source \(V_g\).
+				Its electric diagram is presented on the right. Experimentally, the voltage-biased single Cooper-pair box has been realised for the first time by V. Bouchiat, D. Vion, P. Joyez, D. Esteve and M.H. Devoret at SPEC in CEA, Saclay.
+			</div>
+			<div class="rsect">
+				<div class="center-image" >			
+					<img alt="Voltage-biased Josephson junction" src="../img/images_JJ/charge_qubit.png" style="max-width: 220px; max-height: 220px;"/>
+				</div>
+			</div>
+		</div>
+<!-- 
+		<div class="container">	
+			<div class="lsect" >
+				<div class="center-image" >			
+					<img alt="Energies of states as a function of parameter \(n_g\)" src="../img/images_JJ/Energies_of_states.png" style="max-width: 400px; max-height: 400px;"/>
+				</div>
+			</div>
+		</div> -->
+<!-- ///// -->
+
+		<div class="centrebutt">
+			<p>
+				The next figure on the left presents the dependence of energies of lowest laying states of the Josephson junction as a function of 
+				the ratio between the tunneling energy \(E_J\) and the charging energy \(E_C\) and the Cooper-pair occupation offset \(n_g\).
+
+				For some selected values of \(E_J/E_C = \) 
+				
+				<select id="var_Ej_Ec" size="1" title="Selected a ratio between the junction charging energy and the Josephson tunnelling energy"
+					onchange="ServerUpdate(2, 0)">
+					<option value="0.1"> 0.1</option>
+					<option value="1"> 1</option>
+					<option value="5"> 5</option>
+					<option value="10"> 10 </option>
+					<option value="50"> 50</option>
+					<option value="0"> 0, if \(E_J = 0\)</option>
+				
+
+				</select> 			
+								
+				we can observe how the energy levels evolve with changing coupling parameters.
+				With increasing the value of \(E_J/E_C\) the distances between energy levels become more pronounced and the system loses the 
+				dependence on the parameter \(n_g\). Where  \(n_{g}\) changes in interval \((-1;1)\) and  
+				
+				<span style="white-space: nowrap;">\(N=\)&nbsp<input type="text" class="numinput" autofocus required="required" maxlength="2" id="var_N" placeholder="0" value="20" size="2" title="Dimension of the unitary space."></span>.
+			</p>
+
+			<p>
+				The right figure demonstrates how absolute anharmonicity \(\alpha\) changes as a function of the parameter ratio \(E_J/E_C\).
+			</p>
+
+			<div class="container">	
+				<div class="lsect" >
+					<div class="center-image" >															
+						<div id="resultFig3" style="max-width: 400px; max-height: 300px;"></div>
+						<!-- <input class="Abutton" type="submit" id="submitdata" onclick="save_data3('Ej_Ec');" value="Save current data" style="max-width: 400px; max-height: 400px;"/>								 -->
+					</div>				
+				</div>
+	
+	
+				<div class="rsect">
+					<div class="center-image" >			
+						<img alt="Absolute anharmonicity $\alpha$ of voltage-biased Cooper-pair box" src="../img/images_JJ/Abs_anharmonicity.png" style="max-width: 400px; max-height: 300px;"/>
+					</div>
+				</div>
+			</div>
+
+			<p>
+				From those two graphs one can deduce that the two lowest states of the Josephson junction form a two-dimensional unitary space, representing a qubit. 
+				By arranging multiple Josephson junctions on an integrated circuit and interconnecting them, one can manipulate the ensemble's state, 
+				facilitating computations before the quantum state decoheres due to inevitable interactions with the macroscopic classical environment.			
+			</p>
+		</div>
+		<hr>
+		<div class="centrebutt">
+			This notebook is divided in two main parts:
+			<ol>
+				<li> <b>Harmonic and anharmonic potentials</b>: will discuss the harmonc and anharmonic nature of quantum mechanical systems. </li>
+				<li> <b>Physical realisations of Josephson junctions</b>:  will present one type of Josephson junction - a <i>charge qubit </i> and discussed two regimes of this system: 
+					 voltage-biased <em>Cooper-pair box</em> and <em>transmon qubit</em>.</li>
+							
+			</ol>
+			<div class="center-image" >			
+				<img alt="Parameter space for selected qubits" src="../img/images_JJ/parameter_space.png" style="max-width: 500px; max-height: 400px;"/>
+		
+			</div>
+		</div>
+
+
+		<div>
+			<a href="https://mybinder.org/v2/gh/QTechEdu/QTech_notebooks/HEAD?labpath=PhyQ_JJ.ipynb" target="_blank">Open notebook</a>
+		</div>
+
+	</div>
+
+		<script>
+			$(document).ready(function() {
+				$("#showInfo").click(function(event) {
+					event.preventDefault(); // Prevent the default behavior of the anchor tag
+					$("#infoSection").toggle(); // Toggle the visibility of the div
+				});
+				$("#closeInfo").click(function(event) { 
+					event.preventDefault(); // Prevent default behavior of the button
+					$("#infoSection").hide();
+				});
+			});
+		</script>
+
+	<hr>
+
+	<div class="divbuttons">
+
+		<div class="divbutton">
+			<p align="center">
+			<svg id="mysvg" viewBox="-2 -4 104 33" onclick="window.location.href='../EN/ex3.html'">
+			<path id="SVGstroke"
+			 d ="M   9  1
+			 L 99  1
+			 L 99  20
+			 L  9  20
+			 L  1  10
+			 Z"/>
+			<text id="SVGtext" x="50" y="12.5">	Exercise 3</text></svg></p>
+		</div>
+		<div class="divbutton">
+			<p align="center">
+				<svg id="mysvg" viewBox="-1 -2 102 29" onclick="window.location.href='../index.html'">
+
+				<defs>
+					<linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1" offset="0%"/>
+						<stop class="stop2" offset="50%"/>
+						<stop class="stop3" offset="100%"/>
+					</linearGradient>
+					<linearGradient id="Gradient1-hover" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1-hover" offset="0%"/>
+						<stop class="stop2-hover" offset="65%"/>
+						<stop class="stop3-hover" offset="100%"/>
+					</linearGradient>
+					<linearGradient id="Gradient1-active" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1-active" offset="0%"/>
+						<stop class="stop2-active" offset="50%"/>
+						<stop class="stop3-active" offset="100%"/>
+					</linearGradient>
+					<filter id="dropshadow" width="120%" height="120%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+						<feOffset dx="5" dy="10" result="offsetblur"/>
+						<feMerge>
+							<feMergeNode/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
+					<filter id="dropshadow-active" width="120%" height="120%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+						<feOffset dx="0" dy="1" result="offsetblur"/>
+						<feMerge>
+							<feMergeNode/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
+				</defs>
+
+				<path id="SVGstroke"
+				d ="M  1  1
+				L 50  5
+				L 99  1
+				L 99  20
+				L 50  24
+				L  1  20
+				Z"/>
+				<text id="SVGtext" x="50" y="12.5">Back to content</text></svg>
+			</p>
+		</div>
+		<div class="divbutton">
+			<p align="center">
+				<svg id="mysvg" viewBox="-1 -2 102 29" onclick="window.location.href='../EN/ex5.html'">
+				<path id="SVGstroke"
+				d ="M  1  1
+				L 90  1
+				L 99  10
+				L 90  20
+				L  1  20
+				Z"/>
+				<text id="SVGtext" x="50" y="12.5">Exercise 5</text></svg>
+			</p>
+		</div>
+	</div>
+
+	<p class="author"> v.1.2 [15.06.2023-15.07.2024]. Full-stack programming and site design by M. Sosnova (<a href="mailto:mariya.v.sosnova@gmail.com?subject=The%20mail%20to%20M%20Sosnova">mariya.v.sosnova@gmail.com</a>)<p>
+	</div>
+<hr>
+<p style="text-align:center;font-size:1.8vw">THE PROJECT IS SUPPORTED BY</p>
+	<div class="logos-container">
+
+		<div style="display: inline-block; width:15%; padding-left: 1%; padding-right: 3%;">
+			<img alt="Euflag.png logo" src="../img/euflag.png" width="100%" style="vertical-align:middle"/>
+			<!-- <p class="text-xs"> This project has received funding from the European Union. </p> -->
+		</div>
+
+		<div style="display: inline-block; width:25%; padding-left: 3%; padding-right: 3%;">
+			<a href="https://www.digiq.eu/">
+				<img alt="Digiq logo" src="../img/digiqLogo.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>	
+
+		<div style="display: inline-block; width:30%; padding-left: 3%; padding-right: 3%;padding-bottom: 2%;">
+			<a href="http://www.centralesupelec.fr">
+				<img alt="CentraleSupelec logo" src="../img/CentraleSupelec RVB UPSaclay.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>
+		<div style="display: inline-block; width:15%; padding-left: 3%;padding-right: 1%; padding-bottom: 2%;">
+			<a href="http://www.ucf.edu">
+				<img alt="University of Central Florida logo" src="../img/1200px-University_of_Central_Florida_seal.svg.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>
+
+	</div>	
+</body>
+</html>
+

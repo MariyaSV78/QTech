@@ -1,0 +1,74 @@
+#wb_SlideShow1
+{
+	min-height: 20px;
+	background-color: #F5F5F5;
+	background-image: none;
+	border: 1px solid #E3E3E3;
+	box-sizing: border-box;
+	width: 100%;
+	table-layout: fixed;
+	display: table;
+	margin: 0;
+}
+#SlideShow1
+{
+	padding: 30px 40px 30px 40px;
+	position: relative;
+	margin: 0;
+	line-height: 1;
+	height: 100%;
+	box-sizing: border-box;
+}
+#SlideShow1 .carousel-inner
+{
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+}
+#SlideShow1 .carousel-inner > .carousel-item
+{
+	display: none;
+	position: relative;
+	-webkit-transition: 0.6s ease-in-out left;
+	-moz-transition: 0.6s ease-in-out left;
+	transition: 0.6s ease-in-out left;
+}
+#SlideShow1 .carousel-inner > .carousel-item > img, #SlideShow1 .carousel-inner > .carousel-item > a > img
+{
+	display: block;
+	line-height: 1;
+}
+#SlideShow1 .carousel-inner > .active, #SlideShow1 .carousel-inner > .carousel-item-next, #SlideShow1 .carousel-inner > .carousel-item-prev
+{
+	display: block;
+}
+#SlideShow1 .carousel-inner > .active
+{
+	left: 0;
+}
+#SlideShow1 .carousel-inner > .carousel-item-next, #SlideShow1 .carousel-inner > .carousel-item-prev
+{
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+#SlideShow1 .carousel-inner > .carousel-item-next
+{
+	left: 100%;
+}
+#SlideShow1 .carousel-inner > .carousel-item-prev
+{
+	left: -100%;
+}
+#SlideShow1 .carousel-inner > .carousel-item-next.carousel-item-left, #SlideShow1 .carousel-inner > .carousel-item-prev.carousel-item-right
+{
+	left: 0;
+}
+#SlideShow1 .carousel-inner > .active.carousel-item-left
+{
+	left: -100%;
+}
+#SlideShow1 .carousel-inner > .active.carousel-item-right
+{
+	left: 100%;
+}

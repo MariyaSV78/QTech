@@ -1,0 +1,11 @@
+numpy==1.24.3
+matplotlib
+scipy
+mpmath==1.3.0
+scikit-learn
+ipykernel
+pandas==2.1.1
+sympy
+nb_mypy
+
+tensorflow==2.12.*

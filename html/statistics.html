@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Statistics</title>
+	<meta name="description" content="Statistics for the site of the Quantum mechanics">
+	<meta name="keywords" content="Statistics for the course of the Quantum mechanics">
+	<link href="css/QMexercise.css" rel="stylesheet" type="text/css" media="all">
+	<link href="css/stat.css" rel="stylesheet" type="text/css" media="all">
+	<link href="css/author.css" rel="stylesheet" type="text/css" media="all">
+
+<!--
+<script src="js/plotly-latest.min.js"></script>
+-->
+<script src="js/plotly.min.js"></script>
+</head>
+
+<body  onload="getstat(7)" lang=EN link=blue vlink=purple>
+<script src="js/getstat.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+</script>
+
+<script src="https://www.amcharts.com/lib/3/ammap.js" type="text/javascript"></script>
+<script src="https://www.amcharts.com/lib/3/maps/js/worldHigh.js" type="text/javascript"></script>
+<script src="https://www.amcharts.com/lib/3/themes/dark.js" type="text/javascript"></script>
+
+<!--
+<script src="//www.amcharts.com/lib/4/core.js"></script>
+<script src="//www.amcharts.com/lib/4/maps.js"></script>
+<script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="//www.amcharts.com/lib/4/geodata/worldHigh.js"></script>
+-->
+<!--<script src="//www.amcharts.com/lib/4/geodata/worldLow.js"></script>-->
+
+
+	<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; menu</span>
+
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#" onclick="getstat(7);closeNav();">show new users by time</a>
+		<a href="#" onclick="getstat(0);closeNav();">show all data</a>
+		<p>show sorted data:</p>
+		<a href="#" onclick="getstat(1);closeNav();">  by exercice</a>
+		<a href="#" onclick="getstat(2);closeNav();">  by exercice and time</a>
+		<a href="#" onclick="getstat(3);closeNav();">  by exercice and connections</a>
+		<a href="#" onclick="getstat(4);closeNav();">  by day</a>
+		<a href="#" onclick="getstat(5);closeNav();">  by day and time</a>
+		<a href="#" onclick="getstat(6);closeNav();">  by day and connections</a>
+		<hr>
+		<a href="index.html">Back to content</a>
+<script>
+function openNav() {
+	document.getElementById("mySidenav").style.width = "380px";
+}
+
+function closeNav() {
+	document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+	</div>
+
+<div class="All">
+	<div class="title2" style="height:auto;position:relative">
+		Website Usage Statistics
+	</div>
+	<hr>
+
+	<div class="center">
+		<span id="typ_stattables"></span>
+		<span id="typ_statfigure">
+			<select id="sel_statfigure" onchange="plotFigStat('resultFigStat');">
+				<option value="0">new users</selected>
+				<option value="1">connections</selected>
+				<option value="2">new users by country</selected>
+				<option value="3" selected>users by country</selected>
+			</select>
+			<br>
+			<div id="resultFigStat" style="width: 900px; height: 400px;"></div>
+			<span id="typ_map" hidden>
+				<div id="mapdiv" style="display:flex; width: 900px; height: 500px;"></div>
+			</span>
+		</span>
+	</div>
+
+<p class="author"> v.1.1 [12.03.2019-06.03.2020]. Full-stack programming and site design by A.V. Korovin (<a href="mailto:a.v.korovin73@gmail.com?subject=The%20mai%20to%20Alexander%20Korovin">a.v.korovin73@gmail.com</a>)<p>
+
+</div>
+
+
+</body>
+</html>

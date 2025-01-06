@@ -1,0 +1,43 @@
+#zatemnenie1:target,#zatemnenie2:target {display: block;}
+#zatemnenie1,#zatemnenie2 {
+	background: rgba(102, 102, 102, 0.5);
+	width: 100%;
+	height: 100%;
+/* 	position: absolute; */
+ 	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: none;
+	z-index:998;
+}
+.okno {
+	width: 75%;
+	height: 300px;
+	text-align: center;
+	padding: 15px;
+	border: 3px solid #2d79a0;
+	border-radius: 10px;
+	color: #2d79a0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background: #fff;
+	z-index:999;
+}
+.close {
+	display: inline-block;
+	border: 1px solid #2d79a0;
+	color: #2d79a0;
+	padding: 0 12px;
+	margin: 10px;
+	text-decoration: none;
+	background: #f2f2f2;
+	font-size: 14pt;
+	cursor:pointer;
+}
+.close:hover {background: #e6e6ff;}

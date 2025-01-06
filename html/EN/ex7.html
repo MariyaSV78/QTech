@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="keywords" content="Quantum technology">
+	<title>Chapter 7 - Interference</title>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-160626805-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-160626805-1');
+	</script>
+		
+	<link href="../css/QMexercise.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/dropmenu.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/author.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/slideshow1.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/qtitle.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/tooltip.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../css/modal.css" rel="stylesheet" type="text/css" media="all">
+	<script src="../js/getFiles.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.blockUI.2.70.js" type="text/javascript"></script>
+	<script src="../js/plotly.min.js"></script>
+	<script src="../js/ServerUpdate6.js" type="text/javascript"></script>
+	<script src="../js/ServerUpdate.js" type="text/javascript"></script>
+	<script src="../js/common.js" type="text/javascript"></script>
+	<script src="../js/Figures6.js" type="text/javascript"></script>
+</head>
+
+<body onload="runOnce(0)" lang=EN>
+<script src="../js/chapitre6.js" type="text/javascript"></script>
+<script src="../js/save_json_data.js" type="text/javascript"></script>
+<script async src="../js/mathjax/MathJax.js?config=TeX-MML-AM_SVG-full"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+<script src="../img/image_Interefrence/modeling_interference.js" defer></script>	
+
+
+
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		CommonHTML: {scale: 100},
+		SVG: { scale: 100},
+		matchFontHeight: true,
+		showMathMenu: false,
+		showMathMenuMSIE: false,
+	});
+	</script>
+	
+	<ul id="menu">
+		<li><a href="../index.html">Content</a></li>
+		<li>
+		<li><a href="../EN/tutorial1.html">Tutorial</a></li>
+		<li><a href="../EN/Contacts.html">Contacts</a></li>
+	</ul>
+<div class="divtitle">
+	<a href="..//index.html" title="Back to content" style="text-decoration:none;">
+	<div class="movingtitle">
+		<span>Q</span>
+		<span>U</span>
+		<span>A</span>
+		<span>N</span>
+		<span>T</span>
+		<span>U</span>
+		<span>M</span>
+		<br>
+		<span>T</span>
+		<span>E</span>
+		<span>C</span>
+		<span>H</span>
+		<span>N</span>
+		<span>O</span>
+		<span>L</span>
+		<span>O</span>
+		<span>G</span>
+		<span>Y</span>
+	</div>
+	</a>
+</div>
+<hr>
+
+
+<!-- yellow background -->
+<div class="All">
+	<div class="title2" style="height:32vmin;height:43vm;position:relative;overflow:hidden;" onmouseleave="updateSlides()">
+		<div class="slideshow-container">
+			<div class="zeroSlide">
+				<a href="../EN/ex1.html">
+					<b>EXERCISE 1:</b> <br> Photoionization cross section
+				</a>
+			</div>
+	
+			<div class="zeroSlide">
+				<a href="../EN/ex2.html">
+					<b>EXERCISE 2:</b> <br> Spectroscopy of molecule
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex3.html">
+					<b>EXERCISE 3:</b> <br> Machine learning application
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex4.html">
+					<b>EXERCISE 4:</b> <br> Superconductivity: Josephson junctions
+				</a>
+			</div>			
+
+			<div class="zeroSlide">
+				<a href="../EN/ex5.html">
+					<b>EXERCISE 5:</b> <br> 
+				</a>
+			</div>
+
+			<div class="zeroSlide">
+				<a href="../EN/ex6.html">
+					<b>EXERCISE 7:</b> <br> Diffraction
+				</a>
+			</div>
+
+			<div class="zeroSlide" style="display:block;">
+				<a href="#" style="pointer-events: none;">
+					<b>EXERCISE 7:</b> <br> Interference
+				</a>
+			</div>
+
+		</div>
+
+		<br>
+		<a class="prev" onclick="slideIndex--;showSlides();" style="position:absolute;left:5px;top:45%;z-index:99">
+			<img alt="Back" style="border-style:none" src="../img/carousel_back.png" title="Previous exercise">
+		</a>
+		<a class="next" onclick="slideIndex++;showSlides();" style="position:absolute;right:5px;top:45%;z-index:99">
+			<img alt="Next" style="border-style:none" src="../img/carousel_next.png" title="Next exercise">
+		</a>
+		<div style="display: block;text-align: center;position:absolute;width:100%;bottom:5px;z-index:99">
+		<span class="dot" onclick="slideIndex = 0; showSlides();" title="EXERCISE 1"></span>
+		<span class="dot" onclick="slideIndex = 1; showSlides();" title="EXERCISE 2"></span>
+		<span class="dot" onclick="slideIndex = 2; showSlides();" title="EXERCISE 3"></span>
+		<span class="dot" onclick="slideIndex = 3; showSlides();" title="EXERCISE 4"></span>
+		<span class="dot" onclick="slideIndex = 4; showSlides();" title="EXERCISE 5"></span>
+		<span class="dot" onclick="slideIndex = 5; showSlides();" title="EXERCISE 6"></span>
+		<span class="dot active" onclick="slideIndex = 6; showSlides();" title="EXERCISE 7"></span>
+
+		</div>
+	</div>
+	<script>
+	var slideIndex =  6;
+	var prev_slideIndex =  slideIndex;
+	function showSlides() {
+		var slides = document.getElementsByClassName("zeroSlide");
+		var dots = document.getElementsByClassName("dot");
+		for (var i = 0; i < slides.length; i++) slides[i].style.display = "none";
+		for (var i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
+
+		slides[prev_slideIndex].offsetHeight; /* trigger reflow */
+		if(prev_slideIndex<slideIndex){
+			if (slideIndex > slides.length-1) slideIndex = 0;
+			slides[prev_slideIndex].style.left='-100%';
+			slides[slideIndex].style.left='0%';
+			slides[prev_slideIndex].style.animation=slides[slideIndex].style.animation='caroussel 1.5s';
+		}else{
+			if (slideIndex < 0) slideIndex = slides.length-1;
+			slides[prev_slideIndex].style.left='100%';
+			slides[slideIndex].style.left='0%';
+			slides[prev_slideIndex].style.animation=slides[slideIndex].style.animation='caroussel_back 1.5s';
+		}
+		slides[prev_slideIndex].style.display='block';
+		prev_slideIndex =  slideIndex;
+					
+		slides[slideIndex].style.display = "block";
+		dots[slideIndex].className += " active";
+	}
+	function updateSlides() {
+		if(slideIndex!= 6){
+			slideIndex= 6;
+			showSlides();
+		}
+	}
+	</script>
+	<hr>
+	<div>
+		<b>Objective:</b> The objective of this module is to investigate the phenomenon of interference by examining 
+		the passage of various types of waves through a double slit structure. 
+		This approach provides a deeper understanding of the phenomena of interference as well as diffraction 
+		and their interrelationship. Students will learn to calculate interference patterns using both analytical and numerical methods. 
+		Furthermore, we will explore the practical applications of interference, 
+		with a focus on using a gravimeter to determine the magnitude of the gravitational constant.
+	</div>
+<hr>
+
+	<br>
+
+	<div>
+		<b>Interference</b> (from Latin <i>interferens</i> is from <i>inter</i> - "between" and <i> ferre </i> - "to carry") 
+							is a phenomenon in which two coherent waves combine, taking into account their phase difference. 
+							This combination involves adding their displacements, resulting in a wave with either greater intensity (constructive interference) 
+							or reduced amplitude (destructive interference), depending on whether the waves are in phase or out of phase, respectively. 
+
+		<br>
+		<ul>
+			<li> can be observed with all types of waves, for example, light, radio, acoustic, surface water waves, gravity or matter waves.</li>
+			<br>				
+			<li> the result of interference (interference pattern) depends on the phase difference of the overlapping coherent waves. </li>
+		</ul>
+	</div>
+
+<!-- drop down section / Light Diffraction 1-->
+<div class="hdiv" id="aDIV10full">	
+	<div class="hdivtitle" onclick="HideDiv4('aDIV10','aDIV10full','aDIV10blink')">		
+		<div id="aDIV10blink" class="OpenSymbol-hr4">[+]</div>		
+		<div class="Text-hr4">&nbsp;Interference of light: Double-slit Experiment&nbsp;</div>	
+	</div>	
+
+	<span id="aDIV10" hidden>
+		<section class="SimFrame">
+			<div class="divTop">
+
+				<p>Double-slit interference experiment (Young's interference experiment), first conducted by Thomas Young in 1801, 
+				is a classic demonstration of the phenomenon of interference. 
+				This experiment shows that light behaves as a wave when passing through two closely spaced slits with a width comparable to its wavelength. </p>
+				
+				<p>According to Huygens' principle, each slit acts as a source of secondary waves upon interacting with light wave. 
+				Because these new light sources are coherent and in-phase, their superposition forms a characteristic interference pattern of bright and dark fringes on a screen.</p>
+
+
+				<p>Let us consider a point on a screen located at a distance \(L\) from two parallel slits, which are illuminated by a 
+				<abbr title="the light waves maintain a constant phase relationship, which is essential for producing a clear interference pattern">coherent</abbr> light wave with wavelength \(\lambda\).
+
+				The phase relationship of the waves at the observation point depends on the <i>path difference</i></abbr> between the rays arriving from each slit: \(\Delta\phi = \frac{2\pi d}{\lambda} \sin(\varphi)\).</p>
+
+				<p>
+					If the path difference is equal to an integral number of wavelengths the waves will interfere constructively, leading to a bright spot on the screen.  The condition for <b>maximum intensity</b>:
+
+
+					$$ d\sin\varphi = \pm m \lambda $$
+				
+				</p>
+				<p>
+					The condition for <b>minimum intensity</b> for observation destructive interference is given by
+				
+					$$ d\sin\varphi = \pm (2m + 1)\frac{\lambda}{2} $$
+				
+					where \(m = 1,2,3...\) order of diffraction,  \(d\) is the distance between the centres of the slits and \(\varphi\) is the angular position of the observation point on the screen relative to the central axis.
+				</p>
+
+				<p>
+					To determine how light intensity varies as a function of position on the screen in a double-slit experiment, 
+					one must consider the combined effects of <b>interference</b> from the coherent light waves emerging from the two slits and <b>diffraction</b> due to the finite width of each slit.
+
+					$$I(\varphi) = I_i(\varphi) I_d(\varphi)$$
+					$$I(\varphi) = I_0\cos^2\left(\frac{\pi d}{\lambda} \sin(\varphi) \right)\text{sinc}^2\left(\frac{\pi a}{\lambda} \sin(\varphi)\right)$$
+				
+					<ul>
+						<li>\(\cos^2\left(\frac{\pi d}{\lambda} \sin(\varphi) \right)\) -  describes the interference pattern due to the spacing \(d\)
+							between the slits, producing alternating bright and dark fringes; </li>
+						<li>
+							\(\text{sinc}^2\left(\frac{\pi a}{\lambda} \sin(\varphi)\right)\) - 
+							represents the diffraction envelope due to the finite slit width \(a\) 
+							modulating the intensity and gradually diminishing the fringe visibility away from the central maximum.
+						</li>
+					</ul>
+				</p>
+
+
+			</div>	
+			<div class="center-image" >		
+
+				<div id="canvasContainer" style="position: relative;"></div>  <!-- Container for the canvas -->
+			</div>
+
+			<br> Using the "Visualizer," observe how light diffracts when passing through a single slit.
+			Adjust the wavelength of the beam with the "Wavelength" slider on the left and the aperture size with the "Aperture" slider on the right. 
+			This setup allows for easy exploration and observation of the dependencies between wavelength, aperture size, and the resulting diffraction pattern.
+		</section>
+	</span>
+</div>		
+
+<!-- drop down section / Electrons Diffraction 2-->
+
+<div class="hdiv" id="aDIV2full">	
+	<div class="hdivtitle" onclick="HideDiv4('aDIV2','aDIV2full','aDIV2blink')">		
+		<div id="aDIV2blink" class="OpenSymbol-hr4">[+]</div>		
+		<div class="Text-hr4">&nbsp;&nbsp;Electrons Interference&nbsp;&nbsp;</div>	
+	</div>
+
+	<span id="aDIV2" hidden>
+		<section class="SimFrame">
+			<div>
+
+				The temporal evolution of electrons in space is described by the time-dependent Schrodinger equation:
+				$$i\hbar {\frac {\partial}{\partial t}} \Psi(x,t) = \left( -\frac{\hbar^2}{2m} \Delta + \hat{V}(x) \right)\Psi(x,t)$$
+
+				where \(\Psi(x,t)\) is the wave function, \(\hbar\) is the reduced Planck constant, \(m\) is the particle mass (electron), and 
+				\(\hat{V}(x)\) is the potential.
+
+				Considir an initial wave packet at \((t = 0)\), extended along the \(Oxy\) plane, with its center at \((x_c,y_c)\) and width \(x_0\) and \(y_0\) along the \(x\)- and \(y\)-axis respectively:
+			
+				$$\Psi(x,y,t) = \left(\frac{4}{\pi^2 a_{0x}^2 a_{0y}^2}\right)^{1/4} e^{-\left[\frac{(x-x_c)^2}{a_{0x}^2}+\frac{(y-y_c)^2}{a_{0y}^2} \right]} e^{i[k_{0x}(x - x_c)+k_{0y}(y-y_c)]}$$
+				where \((k_x,k_y)\)are the components of the wave vector \(\mathbf(k)\) along the \(x\)- and \(y\)-axes.
+
+				For the simulation of the propagation of a wave packet through a single slit of length \(l_s = 2\pi/|k|\), we use a potentiel barrier defined as:
+
+				$$ V(x,y) = \begin{cases}
+								V_0e^{-|x|}, &\frac{-d}{2} \le x \le \frac{d}{2}, &\forall y\\
+								0,&\frac{-l_s}{2} \le y \le \frac{l_s}{2}, &\forall x
+							\end{cases}.
+				$$
+				where \(d\) is the width of the slit along the \(x\)-axis, and \(V_0\) = 100 in the case of an infinite potential barrier.
+			</div>
+<!-- ------------------------------------------------------------------------------------------------------------------>			
+		<!-- drop down section / Electrons Diffraction: modeling;-->
+			<div class="hdiv" id="aDIV22full">
+
+				<div class="hdivtitle" onclick="HideDiv4('aDIV22','aDIV22full','aDIV22blink')">		
+					<div id="aDIV22blink" class="OpenSymbol-hr4">[+]</div>		
+					<div class="Text-hr4">&nbsp;&nbsp;Modeling Wave Packet Propagation Through a 2D Slit System &nbsp;</div>	
+				</div>	
+								
+				<span id="aDIV22" hidden>
+					<section class="SimFrame">
+						<div class="divTop">
+							In this section, we can change the profile of the barrier using the following parameters:
+						</div>	
+
+						<div class="lpanel">		
+							<div id="resultFig1" style="max-width: 500px; max-height: 400px;"></div>	
+						</div>
+						<div class="rpanel">		
+							<form id="Form1">
+								<!-- <p align="left">Choose the method of discretization of the kinetic energy operator:
+								<select id="var_Type" title="This is the method of discretization of the kinetic energy operator" onchange="SetPotentialProfile();ServerUpdate(0);">	
+									<option value="0">Plane waves basis set	
+									<option value="1">Sine basis set</select>  -->
+								
+								<br><br>The barrier profile: single slit infinite well.
+								<select id="var_Pot_Type" title="This is the profiles of the potential well" onchange="SetPotentialProfile();ServerUpdate(0);">	
+									<option value="20" selected>free particle	
+									<option value="31">single slit infinite well	
+									<option value="32">double slits infinite well	
+									<option value="33">n slits infinite well	
+								</select> 
+					
+								<br><br>Enter the number of spatial points: <br>
+								<span style="white-space: nowrap;">\(N_x=\)<input type="text" autofocus required="required" maxlength="20" id="var_Nx" placeholder="100" value="100" size="5" title="The number of spatial points for the x-axis"></span>	
+								<span id="txt_Ny">,&nbsp;
+									<span style="white-space: nowrap;">\(N_y=\)<input type="text" autofocus required="required" maxlength="20" id="var_Ny" placeholder="30" value="30" size="5" title="The number of space points for the y-axis"></span>	
+								</span>
+								<br>Enter the x-coordinates of the quantum barrier: <br>
+								<span style="white-space: nowrap;">\(x_{init}=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_x0" placeholder="0" value="0" size="5" title="The left x-position of the calculation space">a.u.</span>,&nbsp;
+								<span style="white-space: nowrap;">\(x_{final}=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_xL" placeholder="10" value="10" size="5" title="The right x-position of the calculation space">a.u.</span>	
+								<span id="txt_y">
+									<br>Enter the y-coordinates of the quantum barrier: <br>	
+									<span style="white-space: nowrap;">\(y_{init}=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_y0" placeholder="-4" value="-4" size="5" title="The left y-position of the calculation space">a.u.</span>
+									<span style="white-space: nowrap;">\(y_{final}=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_yL" placeholder="4" value="4" size="5" title="The right y-position of the calculation space">a.u.</span>	
+								</span>
+								<span id="typ_slit_d"><br><span style="white-space: nowrap;">\(d=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_slit_d" placeholder="5" value="5" size="5" title="The slit width"></span></span>
+								<span id="typ_slit_ls"><br><span style="white-space: nowrap;">\(l_s=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_slit_ls" placeholder="1" value="1" size="5" title="The slit length"></span></span>
+								<span id="typ_slit_ly" hidden><br><span style="white-space: nowrap;">\(l=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_slit_ly" placeholder="1" value="1" size="5" title="The destance between centres of slits"></span></span>
+								<span id="typ_slit_n" hidden><br><span style="white-space: nowrap;">\(n_{slits}=\)<input type="text" autofocus required="required" maxlength="20" id="var_slit_n" placeholder="3" value="3" size="5" title="The number of slits"></span></span>
+								<br>
+								<span id="typ_V0">	
+									<br>Enter the height of the quantum barrier: 
+									<span style="white-space: nowrap;">\(V_{max}=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_V0" placeholder="1" value="1" size="5" title="The height of the quantum barrier">a.u.</span>
+								</span>
+								<br>Enter the particle mass: 
+								<span style="white-space: nowrap;">\(m=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_mu" placeholder="1" value="1" size="5" title="The particle mass">a.u.</span>	
+								<br><br>	
+								<input class="Abutton" type="submit" id="submitdata" value="Update profile" style="max-width:180px;width:100%"/>	
+								<input class="Abutton" type="submit" id="defaultdata" name="defaultdata" value="Reset to default" style="max-width:180px;width:100%"/>	
+								<script>	$("#defaultdata").click(function(){		$(this).data('clicked', true);	});	</script>	<br>	
+							</p>	
+							</form>	
+					
+							<!-- Advertisement placeholder -->
+							<div id="alert" style="display: none;"> </div>
+					
+						</div>
+
+						<div style="clear:both;"></div><span class="blink_text" id="txt_SimulationTime"></span>
+
+					</section>	
+<!-- Wave packet------------------------------------------------------------------------------------------------------------------> 
+
+								<section class="SimFrame">
+									<form id="Form4">
+										<div class="divTop">
+											<p>A wave packet is a certain set of waves having different frequencies that describe a formation possessing wave properties, generally limited in time and space. In quantum mechanics, a particle description in the form of wave packets (a set of solitons) is used.</p>	
+											
+											<p align="left"><br>Parameters for the initial wave packet:<br>
+												<span style="white-space: nowrap;">\(x_c=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_xc_WP" placeholder="20" value="20" size="5" title="This is the initial position of the wave packet along the x axis"></span>,&nbsp;
+												<span style="white-space: nowrap;">\(y_c=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_yc_WP" placeholder="20" value="20" size="5" title="This is the initial position of the wave packet along the y axis"></span>,&nbsp
+												<span style="white-space: nowrap;">\(x_0=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_a0x" placeholder="2" value="2" size="5" title="This is the wave packet width in the direct space along the x-axis"></span>,&nbsp
+												<span style="white-space: nowrap;">\(a^y_0=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_a0y" placeholder="2" value="2" size="5" title="This is the wave packet width in the direct space along the y-axis"></span>,&nbsp;
+												<span style="white-space: nowrap;">\(k^x_0=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_k0x" placeholder="3" value="3" size="5" title="This is the wave vector of the wave packet center in the inverse direct space of the x-axis"></span>,&nbsp;
+												<span style="white-space: nowrap;">\(k^y_0=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_k0y" placeholder="3" value="3" size="5" title="This is the wave vector of the wave packet center in the inverse direct space of the y-axis"></span>
+												<br>Please enter the number of points for the inverse space: 
+												<span style="white-space: nowrap;">\(N_{kx}=\)<input type="text" autofocus required="required" maxlength="20" id="var_Nkx" placeholder="300" value="300" size="5" title="This is the number of points for the inverse space of the x-axis"></span>,&nbsp;
+												<span style="white-space: nowrap;">\(N_{ky}=\)<input type="text" autofocus required="required" maxlength="20" id="var_Nky" placeholder="300" value="300" size="5" title="This is the number of points for the inverse space of the y-axis"></span>	
+											</p>	
+											<p align="center">		
+												<input class="Abutton" type="submit" id="submitdata2recal" value="Update figure" style="width:200px"/>	
+												<script>	$("#submitdata2recal").click(function(){		$(this).data('clicked', true);	});	</script>	<br>					
+											</p>	
+										
+										</div>	
+										<div align="center">	
+											<div class="lrpaneleq">	
+												<div id="resultFig4a" style="max-width: 465px; max-height: 300px;"></div>	
+											</div>	
+											
+											<div class="lrpaneleq">	
+												<div id="resultFig4c" style="max-width: 465px; max-height: 300px;"></div>		
+											</div>
+											<!-- <input class="Abutton" type="submit" id="submitdata2saveR" onclick="save_json_data(1);" value="Save current data for wave function" title="Save current data for wave function (w.f.)" style="max-width:300px;width:100%;"/>	 -->
+										</div>	
+									</form>
+									
+								<!-- Advertisement placeholder -->
+									<div id="alert" style="display: none;"> </div>
+
+									<div style="clear:both;"></div>
+								</section>	
+
+<!--Temporal evolution of the wave packet ---------------------------------------------------------------------------------------->
+						<!-- <div class="hdiv" id="aDIV8full">	
+							<div class="hdivtitle" onclick="HideDiv4('aDIV8','aDIV8full','aDIV8blink')">		
+								<div id="aDIV8blink" class="OpenSymbol-hr4">[+]</div>		
+								<div class="Text-hr4">&nbsp;&nbsp;Temporal evolution of the wave packet&nbsp;&nbsp;</div>	
+							</div>	
+
+							<span id="aDIV8" hidden> -->
+							<section class="SimFrame">
+								<div class="divTop">
+									<p>In this section, wave propagation (the initial state of which is given by the Gaussian profile 
+										in the previous section) through the barrier is simulated. In other words, here we can analyze 
+										the temporal evolution of the wave packet in the barrier system.
+									</p>
+								</div>	
+								<!-- <div class="divTop">	 -->
+									<form id="Form5">
+										<div class = "lpanel">
+											<p align="left">Enter the calculation parameters:<br>
+											
+												<br>Number of points for time discretization: 
+												<span style="white-space: nowrap;">\(N_t=\)<input type="text" autofocus required="required" maxlength="20" id="var_Nt" placeholder="300" value="300" size="5" title="The number of points for the time space" onchange="change_tmax();"></span>
+												<br>Time step: 
+												<span style="white-space: nowrap;">\(\Delta t=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_dt" placeholder="0.1" value="0.1" size="5" title="The time step for simulations" onchange="change_tmax();"></span>	
+												<span id="txt_tmax" style="white-space: nowrap;"></span>
+												<br>Maximum number of iterations: 
+												<span style="white-space: nowrap;">\(N_c^{max}=\)<input type="text" autofocus required="required" maxlength="20" id="var_Nc_max" placeholder="10000" value="10000" size="5" title="The maximum number of iterations"></span>
+												<span id="txt_Nc_current" style="white-space: nowrap;"></span>
+												<br>The calculation accuracy based on the Chebyshev expansion: 
+												<span style="white-space: nowrap;">\(a_{min}=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_amin" placeholder="0.0000005" value="0.0000005" size="5" title="The accuracy of the Chebyshev decomposition"></span>
+												<br>The convergence criteria: 
+												<span style="white-space: nowrap;">\(\epsilon=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_epsilon" placeholder="1e-5" value="1e-5" size="5" title="The convergence criteria"></span>	
+												<br>The screen position for observing the diffraction: 
+												<span style="white-space: nowrap;">\(x=\)<input type="text" class="numinput" autofocus required="required" maxlength="20" id="var_x_screen" placeholder="1e-5" value="20" size="5" title="The screen position for observing the diffrection pattern"></span><br>	<br>	
+											</p>
+										</div>
+										<div class = "rpanel">
+											<br><br><br>
+											<!-- <input type="checkbox" id="var_isFourrier" onclick="plotFig5('resultFig5');" title="Check this to show the Fourier decomposition">Show Fourier decomposition	<br><br>
+											<input type="checkbox" id="var_isProfile_inFig5" onclick="plotFig5('resultFig5');" title="Add potential energy of the well">Show potential energy	<br><br>
+											<input type="checkbox" id="var_isScreen_inFig5" onclick="plotFig5('resultFig5');" title="Add screen">Show the screen position<br> <br>
+											 -->
+											<input type="checkbox" id="var_isFourrier" onclick="SetFFT()" title="Check this to show the Fourier decomposition">Show Fourier decomposition	<br><br>
+									
+											<div id="not_isFourrier1"> 	
+												<input type="checkbox" id="var_isProfile_inFig5" onclick="SetFFT();" title="Add potential energy of the well">Show potential energy	<br><br>
+												<input type="checkbox" id="var_isScreen_inFig5" onclick="SetFFT();" title="Add screen">Show the screen position<br> <br>
+											</div>
+							
+
+
+
+											<!-- <span id="typ_isShowAnalyticSolution">	<br>	 -->
+											<!-- <input type="checkbox" id="var_isShowAnalyticSolution" onclick="plotFig5('resultFig5');plotFig3('resultFig3');" title="Check this to show the analytical solution">Show analytical solutions	<br></span><br> -->
+											<!-- <div class="center-buttons"> -->
+												<input class="Abutton" type="submit" id="submitdata" value="Run simulations" title="Run simulations" style="max-width:300px;width:100%"/>
+												<!-- <input class="Abutton" type="submit" id="simulations_video" value="Run simulations & save video" title="Run simulations & save video" style="max-width:300px;width:100%"/>	
+												<script>	$("#simulations_video").click(function(){		$(this).data('clicked', true);	});	</script>	 -->
+											<!-- </div> -->
+										</div>
+									</form>	
+								<div>
+									<div class="lrpaneleq">
+										<div id="resultFig5" style="max-width: 465px; max-height: 400px;"></div>	
+									</div>
+
+									<div id="not_isFourrier2"> 
+
+										<div class="lrpaneleq">		
+											<div id="resultFig_ex8" style="max-width: 465px; max-height: 400px;"></div>	
+										</div>
+									</div>
+									<!-- <span id="typ_saveVideo" hidden>		
+										<p align="left">			
+											<a href="" id="saveVideo" download="Video.gif">
+												<input class="Abutton" type="submit" value="Save Video"/>
+											</a>		
+										</p>	
+									</span>	 -->
+								</div>
+
+								<div style="clear:both;"></div>
+							</section>	
+							<!-- </span>
+						</div> -->
+<!-- End of modelling ------------------------------------------------------------------------------------------------------------------>
+				</span>
+			</div>
+<!-- End of 2 ------------------------------------------------------------------------------------------------------------------>
+		</section>	
+	</span>
+</div>
+
+
+<!-- drop down section / Diffraction Applications: section 3-->
+
+<div class="hdiv" id="aDIV3full">	
+	<div class="hdivtitle" onclick="HideDiv4('aDIV3','aDIV3full','aDIV3blink')">		
+		<div id="aDIV3blink" class="OpenSymbol-hr4">[+]</div>		
+		<div class="Text-hr4">&nbsp;&nbsp;Some Aspects of Interference Applications&nbsp;&nbsp;</div>	
+	</div>	
+	<span id="aDIV3" hidden>
+		<section class="SimFrame">
+			<u>Objective:</u> The phenomenon of interference is widely used in measurement technology due to 
+			its high sensitivity to changes in parameters of the system under study. 
+			Using the Michelson interferometer as an example, we will explore the use of interference to determine the refractive index 
+			or gravitational acceleration from the perspective of classical physics. 
+			The application of interference in quantum mechanics will be demonstrated through the use of Cold Atom Gravimeter, 
+			which provide highly accurate measurements of gravitational acceleration. 
+			<hr>
+<!-- Light Diffraction application------------------------------------------------------------------------------------>
+
+			<div class="hdiv" id="aDIV31full">
+				<div class="hdivtitle" onclick="HideDiv4('aDIV31','aDIV31full','aDIV31blink')">		
+					<div id="aDIV31blink" class="OpenSymbol-hr4">[+]</div>		
+					<div class="Text-hr4">&nbsp;&nbsp;Interference application: the Michelson interferometer&nbsp;</div>	
+				</div>	
+				
+				<span id="aDIV31" hidden>
+					<section class="SimFrame">
+						<div class="divTop">
+							Wave interference has a broad range of applications, extending from scientific research to practical technologies. 
+							In all these cases, the key component is the 
+							<a href="https://www.rp-photonics.com/interferometers.html" target="_blank">interferometer</a> 
+							- a device that extracts necessary information from interference patterns. 
+							Let's focus on one of the types: the Michelson interferometer.
+							<br>
+							The setup consists of the following components (as shown in Figure (a) below):							
+							<ul> 
+								<li> 
+									A semi-reflective mirror, known as a beam splitter, which divides the beam from a coherent radiation source 
+									(such as a laser) into two separate beams.
+								</li> 
+								<li>
+									Beam 1 reflects off Mirror 1 (which can be rotated) and then crosses the beam splitter again before reaching the photodetector (PD).
+								<li>
+									Beam 2 passes through the beam splitter, reflects off Mirror 2 
+									(which can be moved along the system's axis), 
+									and is then reflected by the beam splitter before reaching the photodetector.
+								</li> 
+								<li>
+									The ability to adjust the mirrors allows for control over both the path difference between the beams and the direction of their propagation.
+								</li>
+							</ul>
+							Even the slightest changes in the system - such as adjustments to the length of an arm or variations in the refractive index -cause phase shifts between the optical paths, resulting in different interference patterns:
+
+							<ul>
+								<li>
+									<b>Constructive</b> interference occurs when the path difference corresponds to a whole number of wavelengths 
+									(0, \(\lambda\), \(2\lambda\)…), producing a strong signal.
+								</li>
+								<li>
+									<b>Destructive</b> interference occurs when the path difference is an odd multiple of half wavelengths (\(\lambda/2\), \(3\lambda/2\)…), resulting in a near-zero signal at the photodetector.
+								</li>
+								<li>
+									If the two mirrors are strictly perpendicular to each other, the interference pattern appears as concentric circles, known as fringes of equal inclination . 
+								</li>
+								<li>
+									If the mirrors are not perfectly perpendicular, the pattern changes to fringes of equal thickness, forming parallel stripes.
+								</li>
+							</ul>
+						
+							This configuration allows the interferometer to detect and display even minute changes in the optical path, making it highly sensitive to variations within the system.
+						
+						</div>
+						<br>
+						<div class="lpanel">
+							<img alt="Application:Interfereometr_Michelson" src="../img/image_Interefrence/Fig2_Interfereometr_Michelson1.png" style="max-width: 420px; max-height: 420px;"/>
+
+						</div>
+
+						<div class="lrpanel">
+							
+							The Michelson interferometer setup has wide applications in various fields, including:							
+							<ul>
+
+								<li> Measurement of light wavelength and refractive index of transparent materials (as shown in
+									<a href="https://holmarc.com/michelson_interferometer.php" target="_blank">figure (b)</a>).  
+								</li>
+								<br>
+
+								<li> Optical Coherence Tomography
+									<a href="https://www.slideshare.net/slideshow/oct-54781198/54781198" target="_blank">(OCT)</a>. 
+									This non-invasive imaging technique provides high-resolution, cross-sectional images of the retina and optic nerve head, and is commonly used for eye diagnostics in medicine.
+								</li>
+								<br>
+
+								<li> Detection of gravitational waves, which plays a key role in modern physics, is being researched at advanced observatories such as 
+									<a href="https://www.ligo.caltech.edu" target="_blank">LIGO</a> and <a href="https://www.virgo-gw.eu" target="_blank">VIRGO</a> (the photo of the interferometer is shown in figure (c)).
+								</li>
+	
+							</ul>
+
+							<p>
+								More detailed information can be found in 				
+								<a href="https://theses.hal.science/tel-00070861/document" target="_blank">[P. Cheinet]</a>, 
+							</p>
+						</div>	
+					
+
+						<div style="clear:both;"></div><span class="blink_text" id="txt_SimulationTime"></span>
+					</section>	
+				</span>
+
+			</div>
+		
+<!-- Electrons Diffraction application------------------------------------------------------------------------------------>
+			<div class="hdiv" id="aDIV32full">
+
+				<div class="hdivtitle" onclick="HideDiv4('aDIV32','aDIV32full','aDIV32blink')">		
+					<div id="aDIV32blink" class="OpenSymbol-hr4">[+]</div>		
+					<div class="Text-hr4">&nbsp;&nbsp;Interference application: Cold Atom Gravimeter&nbsp;</div>	
+				</div>	
+								
+				<span id="aDIV32" hidden>
+					<section class="SimFrame">
+						<div class="divTop">
+							The application of atomic interferometry phenomenon is used in the cold atom gravimeter, 
+							which allows for the measurement of gravitational acceleration \(g\) with high precision, on the order of \(2x10^{-8} g\) per second.
+							First, a few \(10^8\)  \(^{87}Rb\) atoms are captured in a magneto-optical trap. 
+							They are cooled down to microKelvin temperatures before being released. 
+							During their free fall, they experience a sequence of three laser pulses, that split and recombine the atomic wavepackets. 
+							Finally, the phase difference between the two arms of the interferometer, that is proportionnal to \(g\), is determined 
+							form the measurement of the atomic state at the output of the interferometer.
+
+						</div>
+
+						<div class="lpanel_ex6">
+							<br>
+							<img alt="Application: Cold Atom Gravimeter" src="../img/image_Interefrence/Fig7_the schematic of energy levels of R87.png" style="max-width: 550px; max-height: 450px;"/>
+							<p>(a) Principle of a Three-Pulse Atom Interferometer based on simulated Raman transition <br>
+							(b) the schematic of energy levels of \(^{87}Rb\).
+							<a href="https://theses.hal.science/tel-01868516/document" target="_blank">[M.Langlois]</a>, </p>
+
+						</div>	
+
+						<div class="rpanel_ex6">
+							<p>Two counter-propagating laser beams, whose frequency difference resonates with the energy separation between the two hyperfine levels \(|a⟩ = |5S_{\frac{1}{2}}, F = 1⟩\) and \(|b⟩ = |5S_{\frac{1}{2}}, F = 2⟩\), <br>
+								induce a transition between these two levels, that accompanied by a momentum transfer of \( \hbar(k_1 - k_2) = \hbar k_{eff}\) from the two beams, allowing for the spatial separation of the two states.</p>
+								
+							<p>	After being selected in the state \(|{a}\rangle\), the \(^{87}Rb\) atoms will undergo, in order: a \(\frac {\pi} 2\) transition (splitting), a \(\pi\) transition (mirror), and a \(\frac {\pi} 2\) transition (recombination).</p>						
+						<br>
+						</div>
+						
+						<div class="center">
+
+							<p>To determine \(g\), we need to know the probability of finding an atom in one of the states:</p>
+
+							<p>
+								$$P=\frac {N_{|{a}\rangle}}{N_{|{a}\rangle}+ N_{|{b}\rangle}}$$
+
+								<!-- $$P = \frac 1 2 \left[ 1-\cos ( k_\text{eff}gT^2+\phi_1^0 - 2\phi_2^0 + \phi_3^0 )\right]=\frac 1 2 \left[ 1-\cos (\Delta \phi)\right]$$ -->
+							</p>
+
+							<!-- <ul> where,
+							
+								<li> \(g\) - gravitational acceleration;</li>
+								
+								<li>\(N_{|{a}\rangle}\) and \(N_{|{b}\rangle}\) - the number of atoms detected in states \(|a⟩\) and \(|b⟩\), respectively, can be determined using the fluorescence method;</li>
+								
+								<li>\(k_{eff}\) - the effective wave vector, which represents the momentum transfer associated with the Raman beams in the atom interferometer. This parameter is a function of the wave vectors of the two counter-propagating laser beams and plays a critical role in the phase accumulation of the atoms;</li>
+								
+								<li>\(T\) - the time duration during which the atoms are allowed to fall freely between the initial state preparation and the measurement;</li>
+								
+							    <li>\(\Delta \phi\) - the total phase difference experienced by the atoms due to gravitational acceleration and the interactions with the laser pulses. This phase shift is a result of both the gravitational influence on the freely falling atoms and the specific phases of the laser pulses, and it determines the final interference pattern observed in the atom interferometer;</li>
+							</ul> -->
+						</div>
+						<div class="center">
+							In practice, due to the Doppler effect, the resonance frequency of the Raman process depends on velocity. 
+							As the atoms are in free fall, it is necessary to sweep the frequency difference between the Raman laser beams to satisfy the resonance condition for each pulse.
+
+							Thus, the phase shift \(\alpha T^2\) is added to the gravitational phase shift (where \(\alpha/2\pi\) is the frequency sweep rate). 
+							If \(T\) is total time between the first and last laser pulses and  \(\tau\) is the time between each consecutive pulse, the phase shift can be rewritten as:
+
+							$$\Delta \phi = (k_\text{eff}g-a)(T+2\tau)(T+4\tau/\pi)$$
+
+							The fringes are recorded by varying \(\alpha\) for each measurement. When the Doppler effect is perfectly compensated, regardless of the value of \(T\), the total phase shift \(\Delta \phi\) becomes zero. 
+							The corresponding dark fringe associated with its sweep rate \(\alpha_0\)  allows to determine the value of \(g\):
+
+							$$ g = \frac{\alpha_0}{k_{eff}}$$ 
+
+						</div>
+
+						<div class="lpanel_ex6">
+							<br>
+							<img alt="Application: Cold Atom Gravimeter" src="../img/image_Interefrence/Fig8_Experiment_Transition probability.png" style="max-width: 550px; max-height: 450px;"/>
+						</div>	
+
+						<div class="rpanel_ex6">
+							<p> Interference fringes. The transition probability is measured as a function of the frequency ramp applied to the Raman beams. 
+								The fringe that remains dark, regardless of the interrogation time, is the one for which the ramp precisely compensates for the Doppler effect, 
+								thereby allowing the measurement of \(g\). 
+								<a href="https://metrologie-francaise.lne.fr/sites/default/files/media/document/p33-40-rfm13-pereira-gravimetre-atomes-froids.pdf" target="_blank">[F. PEREIRA DOS SANTOS]</a>.							
+							</p>	
+							<p>
+								From this data, we obtain \(\alpha_0/2\pi = 25.1442 MHz.s^{-1}\);<br>
+								Using the formula for \(g\) and the value of \(k_{eff} = 2 \pi * 2.56330737276 * 10^6 \) for Rubidium-87 atoms, we calculate \(g = 9.809280099298581 \frac{m}{s^2}\)
+			
+							</p>					
+						<br>
+						</div>
+
+
+
+						<div>
+							More detailed information can be found in 				
+							<a href="https://theses.hal.science/tel-00070861/document" target="_blank">[P. Cheinet]</a>, 
+							<a href="https://syrte.obspm.fr/spip/science/iaci/projets-en-cours/gravimetre/article/gravimetre-a-atomes-froids?lang=ent" target="_blank">[SYRTE]</a>.							
+
+						</div>					
+						<div style="clear:both;"></div><span class="blink_text" id="txt_SimulationTime"></span>
+					</section>	
+				</span>
+			</div>
+<!-- ------------------------------------------------------------------------------------------------------------------>
+
+		</section>	
+	</span>
+</div>
+<div>
+	<a href="https://mybinder.org/v2/gh/QTechEdu/QTech_notebooks/HEAD?labpath=Interference.ipynb" target="_blank">Open notebook</a>
+
+
+</div>
+
+	<hr>
+
+	<div class="divbuttons">
+
+		<div class="divbutton">
+			<p align="center">
+			<svg id="mysvg" viewBox="-2 -4 104 33" onclick="window.location.href='../EN/ex6.html'">
+			<path id="SVGstroke"
+			 d ="M   9  1
+			 L 99  1
+			 L 99  20
+			 L  9  20
+			 L  1  10
+			 Z"/>
+			<text id="SVGtext" x="50" y="12.5">	Exercise 6 </text></svg></p>
+		</div>
+		<div class="divbutton">
+			<p align="center">
+				<svg id="mysvg" viewBox="-1 -2 102 29" onclick="window.location.href='../index.html'">
+
+				<defs>
+					<linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1" offset="0%"/>
+						<stop class="stop2" offset="50%"/>
+						<stop class="stop3" offset="100%"/>
+					</linearGradient>
+					<linearGradient id="Gradient1-hover" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1-hover" offset="0%"/>
+						<stop class="stop2-hover" offset="65%"/>
+						<stop class="stop3-hover" offset="100%"/>
+					</linearGradient>
+					<linearGradient id="Gradient1-active" x1="0" x2="0" y1="0" y2="1">
+						<stop class="stop1-active" offset="0%"/>
+						<stop class="stop2-active" offset="50%"/>
+						<stop class="stop3-active" offset="100%"/>
+					</linearGradient>
+					<filter id="dropshadow" width="120%" height="120%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+						<feOffset dx="5" dy="10" result="offsetblur"/>
+						<feMerge>
+							<feMergeNode/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
+					<filter id="dropshadow-active" width="120%" height="120%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+						<feOffset dx="0" dy="1" result="offsetblur"/>
+						<feMerge>
+							<feMergeNode/>
+							<feMergeNode in="SourceGraphic"/>
+						</feMerge>
+					</filter>
+				</defs>
+
+				<path id="SVGstroke"
+				d ="M  1  1
+				L 50  5
+				L 99  1
+				L 99  20
+				L 50  24
+				L  1  20
+				Z"/>
+				<text id="SVGtext" x="50" y="12.5">Back to content</text></svg>
+			</p>
+		</div>
+		<div class="divbutton">
+			<p align="center">
+				<svg id="mysvg" viewBox="-1 -2 102 29" onclick="window.location.href='../EN/ex1.html'">
+				<path id="SVGstroke"
+				d ="M  1  1
+				L 90  1
+				L 99  10
+				L 90  20
+				L  1  20
+				Z"/>
+				<text id="SVGtext" x="50" y="12.5">Exercise 1</text></svg>
+			</p>
+		</div>
+	</div>
+
+	<p class="author"> v.1.2 [15.06.2023-15.07.2024]. Full-stack programming and site design by M. Sosnova (<a href="mailto:mariya.v.sosnova@gmail.com?subject=The%20mail%20to%20M%20Sosnova">mariya.v.sosnova@gmail.com</a>)<p>
+	</div>
+<hr>
+<p style="text-align:center;font-size:1.8vw">THE PROJECT IS SUPPORTED BY</p>
+	<div class="logos-container">
+
+		<div style="display: inline-block; width:15%; padding-left: 1%; padding-right: 3%;">
+			<img alt="Euflag.png logo" src="../img/euflag.png" width="100%" style="vertical-align:middle"/>
+			<!-- <p class="text-xs"> This project has received funding from the European Union. </p> -->
+		</div>
+
+		<div style="display: inline-block; width:25%; padding-left: 3%; padding-right: 3%;">
+			<a href="https://www.digiq.eu/">
+				<img alt="Digiq logo" src="../img/digiqLogo.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>	
+
+		<div style="display: inline-block; width:30%; padding-left: 3%; padding-right: 3%;padding-bottom: 2%;">
+			<a href="http://www.centralesupelec.fr">
+				<img alt="CentraleSupelec logo" src="../img/CentraleSupelec RVB UPSaclay.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>
+		<div style="display: inline-block; width:15%; padding-left: 3%;padding-right: 1%; padding-bottom: 2%;">
+			<a href="http://www.ucf.edu">
+				<img alt="University of Central Florida logo" src="../img/1200px-University_of_Central_Florida_seal.svg.png" width="100%" style="vertical-align:middle"/>
+			</a>
+		</div>
+
+	</div>	
+</body>
+</html>
